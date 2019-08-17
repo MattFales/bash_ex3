@@ -1,0 +1,4055 @@
+#!/bin/bash
+# Created By Matthew Fales
+# Fully Free Use 
+# You pass and E name are local to the code and no where else
+# You can make it new without my name on it or add onto it i don't care enjoy
+# For use of ssh in CS Building lab computers
+# you can choose to but . sh at the end but not needed it is a bash script  aka #! /bin/bash
+#*************************************************Google Drive ********************************************************
+# http://www.linuxandubuntu.com/home/google-drive-cli-client-for-linux  how to set up google drive back up
+#*****************************************How to install ***************************************************************
+# file path for linux /usr/local/bin/   this will allow you to use this as simple command like sshn
+# on macs /bin:/usr/local/bin:  or check it out https://stackoverflow.com/questions/18682413/where-do-you-keep-your-own-scripts-on-osx
+#*******************************************For macs you need ss HPass**************************************************
+# brew install https://raw.githubusercontent.com/kadwanev/bigboybrew/master/Library/Formula/ss HPass.rb
+#*******************************************for linux you need ss HPass and fping***************************************
+# sudo apt-get install ss HPass
+# sudo apt-get install fping
+#****************************************** to replace th old one*******************************************************
+# sudo mv copy /usr/local/bin/
+# sudo chmod 755 /usr/local/bin/copy    // you can try other chmod number but for fact 755 works
+#********************************************************Version*******************************************************
+ #Version 1.0 Release 10/26/18 // Note this is more of test program beware but as far as i know it is working
+#====================main information=====================================
+
+
+flag="false"
+
+while [ "$flag" = "false" ]
+do
+
+echo "
+Copy from personal computer to CS computer or Cs computer to personal 
+==========================================================
+|1t | To transfer from personal computer to CS computer
+|2t | To tranfer from CS computer to your own
+|3g | Upload archived files to google drive use: drive
+|ssh| If you need to ssh in (Will check conenctions before showing table)
+|inf| Computer lab ss HP lab computer info  
+---------------------------------------------------------
+To exit use: exit
+========================================================="
+read -p "Enter your choice " input
+
+if [ "$input" = "exit" ] || [ "$input" = "exit()" ] || [ "$input" = "exit(1)" ] || [ "$input" = "q" ] || [ "$input" = "quit" ] || [ "$input" = "quit()" ] || [ "$input" = "quit(1)" ] || [ "$input" = "stop" ];
+	then
+	exit 1 
+	fi
+
+if [ "$input" = "1t" ] || [ "$input" = "2t" ] || [ "$input" = "ssh" ] || [ "$input" = "1T" ] || [ "$input" = "2T" ] || [ "$input" = "SSH" ] || [ "$input" = "inf" ] || [ "$input" = "info" ] || [ "$input" = "in" ] || [ "$input" = "INFO" ] || [ "$input" = "Info" ] || [ "$input" = "iNFO" ] || [ "$input" = "inFO" ] || [ "$input" = "infO" ] || [ "$input" = "I" ] || [ "$input" = "3g" ]||[ "$input" = "3G" ]||[ "$input" = "3 G" ]||[ "$input" = "3 g" ]||[ "$input" = "3f" ]||[ "$input" = "3h" ]||[ "$input" = "3y" ]||[ "$input" = "3t" ]||[ "$input" = "3r" ]||[ "$input" = "3b" ]||[ "$input" = "3v" ]||[ "$input" = "3" ]||[ "$input" = "google" ]||[ "$input" = "3google" ]||[ "$input" = "3Gooo" ];
+
+then
+flag="true"
+else
+flag="false"
+echo "************************************************"
+echo "Your input of $input is not right"
+echo "Please put number in that you see in the table"
+echo "You need to put in 1t or 2t or 3g or ssh or inf "
+echo "Try Again"
+echo "************************************************"
+fi
+done
+
+
+
+
+if [ "$input" = "1t" ] || [ "$input" = "2t" ] || [ "$input" = "ssh" ] || [ "$input" = "1T" ] || [ "$input" = "2T" ] || [ "$input" = "SSH" ];
+then
+	dom=".cs.colostate.edu"
+	HOST="albany$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  a="G"
+		else
+		  a="B"
+		fi
+	HOST="annapolis$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  a1="G"
+		else
+		  a1="B"
+		fi
+	HOST="atlanta$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  a2="G"
+		else
+		  a2="B"
+		fi
+	HOST="augusta$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  a3="G"
+		else
+		  a3="B"
+		fi
+	#===========================================================
+	HOST="austin$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  b="G"
+		else
+		  b="B"
+		fi
+	HOST=" baton-rouge$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  b1="G"
+		else
+		  b1="B"
+		fi
+	HOST="bismarck$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  b2="G"
+		else
+		  b2="B"
+		fi
+	HOST="boise$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  b3="G"
+		else
+		  b3="B"
+		fi
+	#===========================================================
+	HOST="boston$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  c="G"
+		else
+		  c="B"
+		fi
+	HOST="carson-city$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  c1="G"
+		else
+		  c1="B"
+		fi
+	HOST="charleston$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  c2="G"
+		else
+		  c2="B"
+		fi
+	HOST="cheyenne$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  c3="G"
+		else
+		  c3="B"
+		fi
+	#===========================================================
+	HOST="columbia$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  d="G"
+		else
+		  d="B"
+		fi
+	HOST="columbus-oh$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  d1="G"
+		else
+		  d1="B"
+		fi
+	HOST="concord$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  d2="G"
+		else
+		  d2="B"
+		fi
+	HOST="denver$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  d3="G"
+		else
+		  d3="B"
+		fi
+	#===========================================================
+	HOST="des-moines$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  e="G"
+		else
+		  e="B"
+		fi
+	HOST="dover$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  e1="G"
+		else
+		  e1="B"
+		fi
+	HOST="frankfort$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  e2="G"
+		else
+		  e2="B"
+		fi
+	HOST="harrisburg$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  e3="G"
+		else
+		  e3="B"
+		fi
+	#===========================================================
+	HOST="hartford$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  f="G"
+		else
+		  f="B"
+		fi
+	HOST="helena$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  f1="G"
+		else
+		  f1="B"
+		fi
+	HOST="honolulu$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  f2="G"
+		else
+		  f2="B"
+		fi
+	HOST="indianapolis$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  f3="G"
+		else
+		  f3="B"
+		fi
+	#===========================================================
+	HOST="jackson$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  g="G"
+		else
+		  g="B"
+		fi
+	HOST="jefferson-city$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  g1="G"
+		else
+		  g1="B"
+		fi
+	HOST="juneau$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  g2="G"
+		else
+		  g2="B"
+		fi
+	HOST="lansing$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  g3="G"
+		else
+		  g3="B"
+		fi
+	#===========================================================
+	HOST="lincoln$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  h="G"
+		else
+		  h="B"
+		fi
+	HOST="little-rock$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  h1="G"
+		else
+		  h1="B"
+		fi
+	HOST="madison$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  h2="G"
+		else
+		  h2="B"
+		fi
+	HOST="montgomery$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  h3="G"
+		else
+		  h3="B"
+		fi
+	#===========================================================
+	HOST="montpelier$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  i="G"
+		else
+		  i="B"
+		fi
+	HOST="nashville$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  i1="G"
+		else
+		  i1="B"
+		fi
+	HOST="oklahoma-city$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  i2="G"
+		else
+		  i2="B"
+		fi
+	HOST="olympia$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  i3="G"
+		else
+		  i3="B"
+		fi
+	#===========================================================
+	HOST="phoenix$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  j="G"
+		else
+		  j="B"
+		fi
+	HOST="pierre$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  j1="G"
+		else
+		  j1="B"
+		fi
+	HOST="providence$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  j2="G"
+		else
+		  j2="B"
+		fi
+	HOST="raleiGH $dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  j3="G"
+		else
+		  j3="B"
+		fi
+	#===========================================================
+	HOST="richmond$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  k="G"
+		else
+		  k="B"
+		fi
+	HOST="sacramento$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  k1="G"
+		else
+		  k1="B"
+		fi
+	HOST="saint-paul$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  k2="G"
+		else
+		  k2="B"
+		fi
+	HOST="salem$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  k3="G"
+		else
+		  k3="B"
+		fi
+	#===========================================================
+	HOST="salt-lake-city$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  l="G"
+		else
+		  l="B"
+		fi
+	HOST="santa-fe$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  l1="G"
+		else
+		  l1="B"
+		fi
+	HOST="springfield$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  l2="G"
+		else
+		  l2="B"
+		fi
+	HOST="tallahassee$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  l3="G"
+		else
+		  l3="B"
+		fi
+#===========================================================
+flag="false"
+
+while [ "$flag" = "false" ]
+do
+
+echo "
+==============================Choose City===========================================
+    G = Connections is good  B = Connections has failed please dont use
+====================================================================================
+| 1|$a| albany        | 2|$a1| annapolis     | 3|$a2| atlanta      | 4|$a3| augusta    
+| 5|$b| austin        | 6|$b1| baton-rouge   | 7|$b2| bismarck     | 8|$b3| boise     
+| 9|$c| boston        |10|$c1| carson-city   |11|$c2| charleston   |12|$c3| cheyenne   
+|13|$d| columbia      |14|$d1| columbus-oh   |15|$d2| concord      |16|$d3| denver     
+|17|$e| des-moines    |18|$e1| dover         |19|$e2| frankfort    |20|$e3| harrisburg
+|21|$f| hartford      |22|$f1| helena        |23|$f2| honolulu     |24|$f3| indianapolis
+|25|$g| jackson       |26|$g1| jefferson-city|27|$g2| juneau       |28|$g3| lansing   
+|29|$h| lincoln       |30|$h1| little-rock   |31|$h2| madison      |32|$h3| montgomery 
+|33|$i| montpelier    |34|$i1| nashville     |35|$i2| oklahoma-city|36|$i3| olympia       
+|37|$j| phoenix       |38|$j1| pierre        |39|$j2| providence   |40|$j3| raleiGH 
+|41|$k| richmond      |42|$k1| sacramento    |43|$k2| saint-paul   |44|$k3| salem  
+|45|$l| salt-lake-city|46|$l1| santa-fe      |47|$l2| springfield  |48|$l3| tallahassee
+===================================================================================="
+echo "IF YOU MORE choices type: more"
+read -p "Enter the city you want: " input1
+
+if [ "$input1" = "exit" ] || [ "$input1" = "exit()" ] || [ "$input1" = "exit(1)" ] || [ "$input1" = "q" ] || [ "$input1" = "quit" ] || [ "$input1" = "quit()" ] || [ "$input1" = "quit(1)" ] || [ "$input1" = "stop" ];
+	then
+	exit 1 
+	fi
+
+
+
+
+if [[ "$input1" -ge 1  && "$input1" -le 49 ]]; 
+then
+flag="true"
+else
+if  [ "$input1" = "more" ];
+then
+flag="true"
+else
+flag="false"
+echo "************************************************"
+echo "Your input of $input1 is not right"
+echo "Please put number from 1-49"
+echo "You need to put in something like 1 or 19 or 23"
+echo "Try Again"
+echo "************************************************"
+fi
+fi
+
+
+
+done
+
+
+
+
+
+if [ "$input1" = "more" ] || [ "$input1" = "MORE" ] || [ "$input1" = "MO" ] || [ "$input1" = "M" ] || [ "$input1" = "m" ] || [ "$input1" = "MOr" ] || [ "$input1" = "MOre" ] || [ "$input1" = "More" ]|| [ "$input1" = "mo" ]|| [ "$input1" = "mor" ]|| [ "$input1" = "mORE" ]|| [ "$input1" = "moRE" ]|| [ "$input1" = "morE" ];
+then
+echo "";
+echo "This may take while receiving status please wait may take up to 3 minutes "
+echo "This is due to each machine must be fpinged to check it"
+
+#================================================================
+	dom=".cs.colostate.edu"
+	HOST="albany$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  a="G"
+		else
+		  a="B"
+		fi
+	HOST="annapolis$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  a1="G"
+		else
+		  a1="B"
+		fi
+	HOST="atlanta$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  a2="G"
+		else
+		  a2="B"
+		fi
+	HOST="augusta$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  a3="G"
+		else
+		  a3="B"
+		fi
+	#===========================================================
+	HOST="austin$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  b="G"
+		else
+		  b="B"
+		fi
+	HOST=" baton-rouge$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  b1="G"
+		else
+		  b1="B"
+		fi
+	HOST="bismarck$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  b2="G"
+		else
+		  b2="B"
+		fi
+	HOST="boise$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  b3="G"
+		else
+		  b3="B"
+		fi
+	#===========================================================
+	HOST="boston$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  c="G"
+		else
+		  c="B"
+		fi
+	HOST="carson-city$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  c1="G"
+		else
+		  c1="B"
+		fi
+	HOST="charleston$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  c2="G"
+		else
+		  c2="B"
+		fi
+	HOST="cheyenne$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  c3="G"
+		else
+		  c3="B"
+		fi
+	#===========================================================
+	HOST="columbia$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  d="G"
+		else
+		  d="B"
+		fi
+	HOST="columbus-oh$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  d1="G"
+		else
+		  d1="B"
+		fi
+	HOST="concord$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  d2="G"
+		else
+		  d2="B"
+		fi
+	HOST="denver$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  d3="G"
+		else
+		  d3="B"
+		fi
+	#===========================================================
+	HOST="des-moines$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  e="G"
+		else
+		  e="B"
+		fi
+	HOST="dover$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  e1="G"
+		else
+		  e1="B"
+		fi
+	HOST="frankfort$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  e2="G"
+		else
+		  e2="B"
+		fi
+	HOST="harrisburg$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  e3="G"
+		else
+		  e3="B"
+		fi
+	#===========================================================
+	HOST="hartford$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  f="G"
+		else
+		  f="B"
+		fi
+	HOST="helena$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  f1="G"
+		else
+		  f1="B"
+		fi
+	HOST="honolulu$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  f2="G"
+		else
+		  f2="B"
+		fi
+	HOST="indianapolis$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  f3="G"
+		else
+		  f3="B"
+		fi
+	#===========================================================
+	HOST="jackson$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  g="G"
+		else
+		  g="B"
+		fi
+	HOST="jefferson-city$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  g1="G"
+		else
+		  g1="B"
+		fi
+	HOST="juneau$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  g2="G"
+		else
+		  g2="B"
+		fi
+	HOST="lansing$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  g3="G"
+		else
+		  g3="B"
+		fi
+	#===========================================================
+	HOST="lincoln$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  h="G"
+		else
+		  h="B"
+		fi
+	HOST="little-rock$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  h1="G"
+		else
+		  h1="B"
+		fi
+	HOST="madison$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  h2="G"
+		else
+		  h2="B"
+		fi
+	HOST="montgomery$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  h3="G"
+		else
+		  h3="B"
+		fi
+	#===========================================================
+	HOST="montpelier$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  i="G"
+		else
+		  i="B"
+		fi
+	HOST="nashville$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  i1="G"
+		else
+		  i1="B"
+		fi
+	HOST="oklahoma-city$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  i2="G"
+		else
+		  i2="B"
+		fi
+	HOST="olympia$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  i3="G"
+		else
+		  i3="B"
+		fi
+	#===========================================================
+	HOST="phoenix$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  j="G"
+		else
+		  j="B"
+		fi
+	HOST="pierre$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  j1="G"
+		else
+		  j1="B"
+		fi
+	HOST="providence$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  j2="G"
+		else
+		  j2="B"
+		fi
+	HOST="raleiGH $dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  j3="G"
+		else
+		  j3="B"
+		fi
+	#===========================================================
+	HOST="richmond$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  k="G"
+		else
+		  k="B"
+		fi
+	HOST="sacramento$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  k1="G"
+		else
+		  k1="B"
+		fi
+	HOST="saint-paul$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  k2="G"
+		else
+		  k2="B"
+		fi
+	HOST="salem$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  k3="G"
+		else
+		  k3="B"
+		fi
+	#===========================================================
+	HOST="salt-lake-city$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  l="G"
+		else
+		  l="B"
+		fi
+	HOST="santa-fe$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  l1="G"
+		else
+		  l1="B"
+		fi
+	HOST="springfield$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  l2="G"
+		else
+		  l2="B"
+		fi
+	HOST="tallahassee$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  l3="G"
+		else
+		  l3="B"
+		fi
+	#===========================================================
+	HOST="trenton$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  m="G"
+		else
+		  m="B"
+		fi
+	HOST="washington-dc$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  m1="G"
+		else
+		  m1="B"
+		fi
+	HOST="earth$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  m2="G"
+		else
+		  m2="B"
+		fi
+	HOST="jupiter$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  m3="G"
+		else
+		  m3="B"
+		fi
+	#===========================================================
+	HOST="mars$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  n="G"
+		else
+		  n="B"
+		fi
+	HOST="mercury$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  n1="G"
+		else
+		  n1="B"
+		fi
+	HOST="neptune$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  n2="G"
+		else
+		  n2="B"
+		fi
+	HOST="saturn$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  n3="G"
+		else
+		  n3="B"
+		fi
+	#===========================================================
+	HOST="uranus$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  o="G"
+		else
+		  o="B"
+		fi
+	HOST="venus$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  o1="G"
+		else
+		  o1="B"
+		fi
+	HOST="ankara$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  o2="G"
+		else
+		  o2="B"
+		fi
+	HOST="baGH dad$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  o3="G"
+		else
+		  o3="B"
+		fi
+	#===========================================================
+	HOST="bangkok$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  p="G"
+		else
+		  p="B"
+		fi
+	HOST="beijing$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  p1="G"
+		else
+		  p1="B"
+		fi
+	HOST="berlin$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  p2="G"
+		else
+		  p2="B"
+		fi
+	HOST="bogota$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  p3="G"
+		else
+		  p3="B"
+		fi
+	#===========================================================
+	HOST="cairo$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  q="G"
+		else
+		  q="B"
+		fi
+	HOST="damascus$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  q1="G"
+		else
+		  q1="B"
+		fi
+	HOST="dhaka$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  q2="G"
+		else
+		  q2="B"
+		fi
+	HOST="hanoi$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  q3="G"
+		else
+		  q3="B"
+		fi
+	#===========================================================
+	HOST="hong-kong$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  r="G"
+		else
+		  r="B"
+		fi
+	HOST="jakarta$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  r1="G"
+		else
+		  r1="B"
+		fi
+	HOST="kabul$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  r2="G"
+		else
+		  r2="B"
+		fi
+	HOST="kinshasa$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  r3="G"
+		else
+		  r3="B"
+		fi
+	#===========================================================
+	HOST="lima$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  s="G"
+		else
+		  s="B"
+		fi
+	HOST="london$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  s1="G"
+		else
+		  s1="B"
+		fi
+	HOST="madrid$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  s2="G"
+		else
+		  s2="B"
+		fi
+	HOST="mexico-city$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  s3="G"
+		else
+		  s3="B"
+		fi
+	#===========================================================
+	HOST="moscow$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  t="G"
+		else
+		  t="B"
+		fi
+	HOST="pyongyang$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  t1="G"
+		else
+		  t1="B"
+		fi
+	HOST="riyadh$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  t2="G"
+		else
+		  t2="B"
+		fi
+	HOST="santiago$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  t3="G"
+		else
+		  t3="B"
+		fi
+
+	#===========================================================
+	HOST="seoul$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  u="G"
+		else
+		  u="B"
+		fi
+	HOST="singapore$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  u1="G"
+		else
+		  u1="B"
+		fi
+	HOST="tehran$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  u2="G"
+		else
+		  u2="B"
+		fi
+	HOST="tokyo$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  u3="G"
+		else
+		  u3="B"
+		fi
+	#===========================================================
+	HOST="a-basin$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  v="G"
+		else
+		  v="B"
+		fi
+	HOST="ajax$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  v1="G"
+		else
+		  v1="B"
+		fi
+	HOST="beaver-creek$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  v2="G"
+		else
+		  v2="B"
+		fi
+	HOST="breckenridge$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  v3="G"
+		else
+		  v3="B"
+		fi
+	#===========================================================
+	HOST="buttermilk$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  w="G"
+		else
+		  w="B"
+		fi
+	HOST="cooper$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  w1="G"
+		else
+		  w1="B"
+		fi
+	HOST="cooper-mtn$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  w2="G"
+		else
+		  w2="B"
+		fi
+	HOST="crested-butte$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  w3="G"
+		else
+		  w3="B"
+		fi
+	#===========================================================
+	HOST="eldora$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  x="G"
+		else
+		  x="B"
+		fi
+	HOST="grandby-ranch$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  x1="G"
+		else
+		  x1="B"
+		fi
+	HOST="aspen-hiGH lands$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  x2="G"
+		else
+		  x2="B"
+		fi
+	HOST="howelsen-hill$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  x3="G"
+		else
+		  x3="B"
+		fi
+	#===========================================================
+	HOST="keystone$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  y="G"
+		else
+		  y="B"
+		fi
+	HOST="loveland$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  y1="G"
+		else
+		  y1="B"
+		fi
+	HOST="mary-jane$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  y2="G"
+		else
+		  y2="B"
+		fi
+	HOST="monarch$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  y3="G"
+		else
+		  y3="B"
+		fi
+	#===========================================================
+	HOST="powderhorn$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  z="G"
+		else
+		  z="B"
+		fi
+	HOST="purgatory$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  z1="G"
+		else
+		  z1="B"
+		fi
+	HOST="silverton$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  z2="G"
+		else
+		  z2="B"
+		fi
+	HOST="snowmass$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  z3="G"
+		else
+		  z3="B"
+		fi
+	#===========================================================
+	HOST="steamboat$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  aa="G"
+		else
+		  aa="B"
+		fi
+	HOST="sunliGH t$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  al="G"
+		else
+		  al="B"
+		fi
+	HOST="telluride$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  io="G"
+		else
+		  io="B"
+		fi
+	HOST="vail$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  rh="G"
+		else
+		  rh="B"
+		fi
+	#===========================================================
+	HOST="winter-park$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  bb="G"
+		else
+		  bb="B"
+		fi
+	HOST="wolf-creek$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  be="G"
+		else
+		  be="B"
+		fi
+	HOST="anchovy$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  ka="G"
+		else
+		  ka="B"
+		fi
+	HOST="barracuda$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  si="G"
+		else
+		  si="B"
+		fi
+	#===========================================================
+	HOST="blowfish$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  cc="G"
+		else
+		  cc="B"
+		fi
+	HOST="bonito$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  ga="G"
+		else
+		  ga="B"
+		fi
+	HOST="brill$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  la="G"
+		else
+		  la="B"
+		fi
+	HOST="bullhead$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  ta="G"
+		else
+		  ta="B"
+		fi
+
+	#===========================================================
+	HOST="char$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  dd="G"
+		else
+		  dd="B"
+		fi
+	HOST="cod$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  de="G"
+		else
+		  de="B"
+		fi
+	HOST="dorado$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  mu="G"
+		else
+		  mu="B"
+		fi
+	HOST="eel$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  up="G"
+		else
+		  up="B"
+		fi
+	#===========================================================
+	HOST="flounder$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  ee="G"
+		else
+		  ee="B"
+		fi
+	HOST="grouper$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  ep="G"
+		else
+		  ep="B"
+		fi
+	HOST="halibut$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  nu="G"
+		else
+		  nu="B"
+		fi
+	HOST="herring$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  ph="G"
+		else
+		  ph="B"
+		fi
+	#===========================================================
+	HOST="mackerel$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  ff="G"
+		else
+		  ff="B"
+		fi
+	HOST="marlin$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  ze="G"
+		else
+		  ze="B"
+		fi
+	HOST="perch$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  xi="G"
+		else
+		  xi="B"
+		fi
+	HOST="pollock$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  ch="G"
+		else
+		  ch="B"
+		fi
+	#fi
+	#===========================================================
+	HOST="sardine$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  gg="G"
+		else
+		  gg="B"
+		fi
+	HOST="shark$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  et="G"
+		else
+		  et="B"
+		fi
+	HOST="sole$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  om="G"
+		else
+		  om="B"
+		fi
+	HOST="swordfish$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  ps="G"
+		else
+		  ps="B"
+		fi
+	#===========================================================
+	HOST="turbot$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  hh="G"
+		else
+		  hh="B"
+		fi
+	HOST="tuna$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  th="G"
+		else
+		  th="B"
+		fi
+	HOST="wahoo$dom"
+	fping -c1 $HOST 1>/dev/null 2>/dev/null
+	SUCCESS=$?
+		if [ $SUCCESS -eq 0 ]
+		then
+		  pi="G"
+		else
+		  pi="B"
+		fi
+fi
+if [ "$input1" = "more" ]
+then 
+
+
+flag="false"
+
+while [ "$flag" = "false" ]
+do
+
+
+echo "
+=====================================Choose City===================================
+       G = Connections is good  B = Connections has failed please dont use
+=================================================================================== 
+|  1|$a| albany    |  2|$a1| annapolis    |  3|$a2| atlanta       |  4|$a3| augusta    
+|  5|$b| austin    |  6|$b1| baton-rouge  |  7|$b2| bismarck      |  8|$b3| boise     
+|  9|$c| boston    | 10|$c1| carson-city  | 11|$c2| charleston    | 12|$c3| cheyenne   
+| 13|$d| columbia  | 14|$d1| columbus-oh  | 15|$d2| concord       | 16|$d3| denver     
+| 17|$e| des-moines| 18|$e1| dover        | 19|$e2| frankfort     | 20|$e3| harrisburg
+| 21|$f| hartford  | 22|$f1| helena       | 23|$f2| honolulu      | 24|$f3| indianapolis
+| 25|$g| jackson   | 26|$g1| jeffersoncity| 27|$g2| juneau        | 28|$g3| lansing   
+| 29|$h| lincoln   | 30|$h1| little-rock  | 31|$h1| madison       | 32|$h3| montgomery 
+| 33|$i| montpelier| 34|$i1| nashville    | 35|$i2| oklahoma-city | 36|$i3| olympia       
+| 37|$j| phoenix   | 38|$j1| pierre       | 39|$j2| providence    | 40|$j3| raleiGH 
+| 41|$k| richmond  | 42|$k1| sacramento   | 43|$k2| saint-paul    | 44|$k3| salem  
+| 45|$l| salt-lake | 46|$l1| santa-fe     | 47|$l2| springfield   | 48|$l3| tallahassee
+| 49|$m| trenton   | 50|$m1| washington-dc| 51|$m2| earth         | 52|$m3| jupiter
+| 53|$n| mars      | 54|$n1| mercury      | 55|$n2| neptune       | 56|$n3| saturn
+| 57|$o| uranus    | 58|$o1| venus        | 59|$o2| ankara        | 60|$o3| baGH dad
+| 61|$p| bangkok   | 62|$p1| beijing      | 63|$p2| berlin        | 64|$p3| bogota
+| 65|$q| cairo     | 66|$q1| damascus     | 67|$q2| dhaka         | 68|$q3| hanoi
+| 69|$r| hong-kong | 70|$r1| jakarta      | 71|$r2| kabul         | 72|$r3| kinshasa
+| 73|$s| lima      | 74|$s1| london       | 75|$s2| madrid        | 76|$s3| mexico-city
+| 77|$t| moscow    | 78|$t1| pyongyang    | 79|$t2| riyadh        | 80|$t3| santiago
+| 81|$u| seoul     | 82|$u1| singapore    | 83|$u2| tehran        | 84|$u3| tokyo
+| 85|$v| a-basin   | 86|$v1| ajax         | 87|$v2| beaver-creek  | 88|$v3| breckenridge
+| 89|$w| buttermilk| 90|$w1| cooper       | 91|$w2| cooper-mtn    | 92|$w3| crested-butte
+| 93|$x| eldora    | 94|$x1| grandby-ranch| 95|$x2| aspen-highland| 96|$x3| howelsen-hill
+| 97|$y| keystone  | 98|$y1| loveland     | 99|$y2| mary-jane     |100|$y3| monarch
+|101|$z| powderhorn|102|$z1| purgatory    |103|$z2| silverton     |104|$z3| snowmass
+|105|$aa| steamboat |106|$al| sunlight     |107|$io| telluride     |108|$rh| vail
+|109|$bb| winterpark|110|$be| wolf-creek   |111|$ka| anchovy       |112|$si| barracuda
+|113|$cc| blowfish  |114|$ga| bonito       |115|$la| brill         |116|$ta| bullhead
+|117|$dd| char      |118|$de| cod          |119|$mu| dorado        |120|$up| eel
+|121|$ee| flounder  |122|$ep| grouper      |123|$nu| halibut       |124|$ph| herring
+|125|$ff| mackerel  |126|$ze| marlin       |127|$xi| perch         |128|$ch| pollock
+|129|$gg| sardine   |130|$et| shark        |131|$om| sole          |132|$ps| swordfish
+|134|$hh| turbot    |135|$th| tuna         |136|$pi| wahoo
+===================================================================================="
+read -p "Enter the choice you want: " input1
+
+if [[ "$input1" -ge 1  && "$input1" -le 27 ]] ;
+then
+flag="true"
+else
+flag="false"
+echo "************************************************"
+echo "Your input of $input1 is not right"
+echo "Please put number from 1-137"
+echo "You need to put in something like 1 or 19 or 23"
+echo "Try Again"
+echo "************************************************"
+fi
+done
+
+
+
+
+
+
+
+
+
+
+fi
+fi
+#====================All if statements for what user put in=========================
+#==========================Scroll pass if not neeeded===============================
+#===================================================================================
+	if [ "$input1" = "1" ];
+	then 
+		c="albany" 
+	fi
+	if [ "$input1" = "2" ];
+	then
+		c="annapolis"
+	fi
+	if [ "$input1" = "3" ];
+	then
+		c="atlanta"
+	fi
+	if [ "$input1" = "4" ];
+	then
+		c="augusta"
+	fi
+	if [ "$input1" = "5" ];
+	then
+		c="austin"
+	fi
+	if [ "$input1" = "6" ];
+	then
+		c="baton-rouge"
+	fi
+	if [ "$input1" = "7" ];
+	then
+		c="bismarck"
+	fi
+	if [ "$input1" = "8" ];
+	then
+		c="boise"
+	fi
+	if [ "$input1" = "9" ];
+	then
+		c="boston"
+	fi
+	if [ "$input1" = "10" ];
+	then
+		c="carson-city"
+	fi
+	if [ "$input1" = "11" ];
+	then
+		c="charleston"
+	fi
+	if [ "$input1" = "12" ];
+	then
+		c="cheyenne"
+	fi
+	if [ "$input1" = "13" ];
+	then
+		c="columbia"
+	fi
+	if [ "$input1" = "14" ];
+	then
+		c="columbus-oh"
+	fi
+	if [ "$input1" = "15" ];
+	then
+		c="concord"
+	fi
+	if [ "$input1" = "16" ];
+	then
+		c="denver"
+	fi
+	if [ "$input1" = "17" ];
+	then
+		c="des-moines"
+	fi
+	if [ "$input1" = "18" ];
+	then
+		c="dover"
+	fi
+	if [ "$input1" = "19" ];
+	then
+		c="frankfort"
+	fi
+	if [ "$input1" = "20" ];
+	then
+		c="harrisburg"
+	fi
+	if [ "$input1" = "21" ];
+	then
+		c="hartford"
+	fi
+	if [ "$input1" = "22" ];
+	then
+		c="helena"
+	fi
+	if [ "$input1" = "23" ];
+	then
+		c="honolulu"
+	fi
+	if [ "$input1" = "24" ];
+	then
+		c="indianapolis"
+	fi
+	if [ "$input1" = "25" ];
+	then
+		c="jackson"
+	fi
+	if [ "$input1" = "26" ];
+	then
+		c="jefferson-city"
+	fi
+	if [ "$input1" = "27" ];
+	then
+		c="juneau"
+	fi
+	if [ "$input1" = "28" ];
+	then
+		c="lansing"
+	fi
+	if [ "$input1" = "29" ];
+	then
+		c="lincoln"
+	fi
+	if [ "$input1" = "30" ];
+	then
+		c="little-rock"
+	fi
+	if [ "$input1" = "31" ];
+	then
+		c="madison"
+	fi
+	if [ "$input1" = "32" ];
+	then
+		c="montgomery"
+	fi
+	if [ "$input1" = "33" ];
+	then
+		c="montpelier"
+	fi
+	if [ "$input1" = "34" ];
+	then
+		c="nashville"
+	fi
+	if [ "$input1" = "35" ];
+	then
+		c="oklahoma-city"
+	fi
+	if [ "$input1" = "36" ];
+	then
+		c="olympia"
+	fi
+	if [ "$input1" = "37" ];
+	then
+		c="phoenix"
+	fi
+	if [ "$input1" = "38" ];
+	then
+		c="pierre"
+	fi
+	if [ "$input1" = "39" ];
+	then
+		c="providence"
+	fi
+	if [ "$input1" = "40" ];
+	then
+		c="raleiGH "
+	fi
+	if [ "$input1" = "41" ];
+	then
+		c="richmond"
+	fi
+	if [ "$input1" = "42" ];
+	then
+		c="sacramento"
+	fi
+	if [ "$input1" = "43" ];
+	then
+		c="saint-paul"
+	fi
+	if [ "$input1" = "44" ];
+	then
+		c="salem"
+	fi
+	if [ "$input1" = "45" ];
+	then
+		c="salt-lake-city"
+	fi
+	if [ "$input1" = "46" ];
+	then
+		c="santa-fe"
+	fi
+	if [ "$input1" = "47" ];
+	then
+		c="springfield"
+	fi
+	if [ "$input1" = "48" ];
+	then
+		c="tallahassee"
+	fi
+	if [ "$input1" = "49" ];
+	then
+		c="trenton"
+	fi
+	if [ "$input1" = "50" ];
+	then
+		c="washington-dc"
+	fi
+	if [ "$input1" = "51" ];
+	then
+		c="earth"
+	fi
+	if [ "$input1" = "52" ];
+	then
+		c="jupiter"
+	fi
+	if [ "$input1" = "53" ];
+	then
+		c="mars"
+	fi
+	if [ "$input1" = "54" ];
+	then
+		c="mercury"
+	fi
+	if [ "$input1" = "55" ];
+	then
+		c="neptune"
+	fi
+	if [ "$input1" = "56" ];
+	then
+		c="saturn"
+	fi
+	if [ "$input1" = "57" ];
+	then
+		c="uranus"
+	fi
+	if [ "$input1" = "58" ];
+	then
+		c="venus"
+	fi
+	if [ "$input1" = "59" ];
+	then
+		c="ankara"
+	fi
+	if [ "$input1" = "60" ];
+	then
+		c="baGH dad"
+	fi
+	if [ "$input1" = "61" ];
+	then
+		c="bangkok"
+	fi
+	if [ "$input1" = "62" ];
+	then
+		c="beijing"
+	fi
+	if [ "$input1" = "63" ];
+	then
+		c="berlin"
+	fi
+
+	if [ "$input1" = "64" ];
+	then
+		c="bogota"
+	fi
+	if [ "$input1" = "65" ];
+	then
+		c="cairo"
+	fi
+	if [ "$input1" = "66" ];
+	then
+		c="damascus"
+	fi
+	if [ "$input1" = "67" ];
+	then
+		c="dhaka"
+	fi
+
+	if [ "$input1" = "68" ];
+	then
+		c="hanoi"
+	fi
+
+	if [ "$input1" = "69" ];
+	then
+		c="hong-kong"
+	fi
+
+	if [ "$input1" = "70" ];
+	then
+		c="jakarta"
+	fi
+
+	if [ "$input1" = "71" ];
+	then
+		c="kabul"
+	fi
+
+	if [ "$input1" = "72" ];
+	then
+		c="kinshasa"
+	fi
+	if [ "$input1" = "73" ];
+	then
+		c="lima"
+	fi
+
+	if [ "$input1" = "74" ];
+	then
+		c="london"
+	fi
+
+	if [ "$input1" = "75" ];
+	then
+		c="madrid"
+	fi
+
+	if [ "$input1" = "76" ];
+	then
+		c="mexico-city"
+	fi
+
+	if [ "$input1" = "77" ];
+	then
+		c="moscow"
+	fi
+
+	if [ "$input1" = "78" ];
+	then
+		c="pyongyang"
+	fi
+
+	if [ "$input1" = "79" ];
+	then
+		c="riyadh"
+	fi
+
+	if [ "$input1" = "80" ];
+	then
+		c="santiago"
+	fi
+
+	if [ "$input1" = "81" ];
+	then
+		c="seoul"
+	fi
+
+	if [ "$input1" = "82" ];
+	then
+		c="singapore"
+	fi
+
+	if [ "$input1" = "83" ];
+	then
+		c="tehran"
+	fi
+
+	if [ "$input1" = "84" ];
+	then
+		c="tokyo"
+	fi
+	if [ "$input1" = "85" ];
+	then
+		c="a-basin"
+	fi
+
+	if [ "$input1" = "86" ];
+	then
+		c="ajax"
+	fi
+
+	if [ "$input1" = "87" ];
+	then
+		c="beaver-creek"
+	fi
+
+	if [ "$input1" = "88" ];
+	then
+		c="breckenridge"
+	fi
+
+	if [ "$input1" = "89" ];
+	then
+		c="buttermilk"
+	fi
+
+	if [ "$input1" = "90" ];
+	then
+		c="cooper"
+	fi
+
+	if [ "$input1" = "91" ];
+	then
+		c="copper-mtn"
+	fi
+
+	if [ "$input1" = "92" ];
+	then
+		c="crested-butte"
+	fi
+
+	if [ "$input1" = "93" ];
+	then
+		c="eldora"
+	fi
+	if [ "$input1" = "94" ];
+	then
+		c="grandby-ranch"
+	fi
+	if [ "$input1" = "95" ];
+	then
+		c="aspen-hiGH lands"
+	fi
+	if [ "$input1" = "96" ];
+	then
+		c="howelsen-hill"
+	fi
+	if [ "$input1" = "97" ];
+	then
+		c="keystone"
+	fi
+	if [ "$input1" = "98" ];
+	then
+		c="loveland"
+	fi
+	if [ "$input1" = "99" ];
+	then
+		c="mary-jane"
+	fi
+	if [ "$input1" = "100" ];
+	then
+		c="monarch"
+	fi
+	if [ "$input1" = "101" ];
+	then
+		c="powderhorn"
+	fi
+	if [ "$input1" = "102" ];
+	then
+		c="purgatory"
+	fi
+	if [ "$input1" = "103" ];
+	then
+		c="silverton"
+	fi
+	if [ "$input1" = "104" ];
+	then
+		c="snowmass"
+	fi
+	if [ "$input1" = "105" ];
+	then
+		c="steamboat"
+	fi
+	if [ "$input1" = "106" ];
+	then
+		c="sunliGH t"
+	fi
+	if [ "$input1" = "107" ];
+	then
+		c="telluride"
+	fi
+	if [ "$input1" = "108" ];
+	then
+		c="vail"
+	fi
+	if [ "$input1" = "109" ];
+	then
+		c="winter-park"
+	fi
+	if [ "$input1" = "110" ];
+	then
+		c="wolf-creek"
+	fi
+	if [ "$input1" = "111" ];
+	then
+		c="anchovy"
+	fi
+	if [ "$input1" = "112" ];
+	then
+		c="barracuda"
+	fi
+	if [ "$input1" = "113" ];
+	then
+		c="blowfish"
+	fi
+	if [ "$input1" = "114" ];
+	then
+		c="bonito"
+	fi
+	if [ "$input1" = "115" ];
+	then
+		c="brill"
+	fi
+	if [ "$input1" = "116" ];
+	then
+		c="bullhead"
+	fi
+	if [ "$input1" = "117" ];
+	then
+		c="char"
+	fi
+	if [ "$input1" = "118" ];
+	then
+		c="cod"
+	fi
+	if [ "$input1" = "119" ];
+	then
+		c="dorado"
+	fi
+	if [ "$input1" = "120" ];
+	then
+		c="eel"
+	fi
+	if [ "$input1" = "121" ];
+	then
+		c="flounder"
+	fi
+	if [ "$input1" = "122" ];
+	then
+		c="grouper"
+	fi
+	if [ "$input1" = "123" ];
+	then
+		c="halibut"
+	fi
+	if [ "$input1" = "124" ];
+	then
+		c="herring"
+	fi
+	if [ "$input1" = "125" ];
+	then
+		c="mackerel"
+	fi
+	if [ "$input1" = "126" ];
+	then
+		c="marlin"
+	fi
+	if [ "$input1" = "127" ];
+	then
+		c="perch"
+	fi
+	if [ "$input1" = "128" ];
+	then
+		c="pollock"
+	fi
+	if [ "$input1" = "129" ];
+	then
+		c="sardine"
+	fi
+	if [ "$input1" = "130" ];
+	then
+		c="shark"
+	fi
+	if [ "$input1" = "131" ];
+	then
+		c="sole"
+	fi
+	if [ "$input1" = "132" ];
+	then
+		c="swordfish"
+	fi
+	if [ "$input1" = "133" ];
+	then
+		c="tarpon"
+	fi
+	if [ "$input1" = "134" ];
+	then
+		c="turbot"
+	fi
+	if [ "$input1" = "135" ];
+	then
+		c="tuna"
+	fi
+	if [ "$input1" = "136" ];
+	then
+		c="wahoo"
+	fi
+#=========================================================
+#=========================================================
+#==============ssh stuff=================================
+if [ "$input" = "ssh" ]
+then
+read -p "Enter Your E Name: " name
+read -s -p "Enter Your Password: "  pass
+	p1="sshpass -p "
+	p2="'"
+	p3="'"
+	p4=" ssh -o "
+	p5="'"
+	p6="StrictHostKeyChecking"
+	p7=" no"
+	p8="'"
+	p9=" -X "
+	p10="@"
+	p11=".cs.colostate.edu"
+	eval $p1$p2$pass$p3$p4$p5$p6$p7$p8$p9$name$p10$c$p11
+fi
+#======================================================================================
+#=====================================3g==============================================
+if [ "$input" = "3g" ]||[ "$input" = "3G" ]||[ "$input" = "3 G" ]||[ "$input" = "3 g" ]||[ "$input" = "3f" ]||[ "$input" = "3h" ]||[ "$input" = "3y" ]||[ "$input" = "3t" ]||[ "$input" = "3r" ]||[ "$input" = "3b" ]||[ "$input" = "3v" ]||[ "$input" = "3" ]||[ "$input" = "google" ]||[ "$input" = "3google" ]||[ "$input" = "3Gooo" ];
+then
+user=$(whoami)
+
+
+echo "
+===================Choose what diretory to backup===========================
+|1| $user      | /home/$user          | beware this is everything
+|2| Desktop   | /home/$user/Desktop  |   
+|3| Trash     | /home/$user/Trash    | why are are you doing this
+|4| Documents | /home/$user/Documents| mainly anything write
+|5| Music     | /home/$user/Music    | hope you don't have alot
+|6| Pictures  | /home/$user/Pictures | this can be big beware
+|7| Videos    | /home/$user/Videos   | Video files take up alot of space
+|8| Downloads | /home/$user/Downloads| I guess you can do this 
+| | anything  | /                   | input the directory you want to backup
+=============================================================================="
+read -p "Enter your choice " choice
+
+if [ "$choice" = "exit" ] || [ "$choice" = "exit()" ] || [ "$choice" = "exit(1)" ] || [ "$choice" = "q" ] || [ "$choice" = "quit" ] || [ "$choice" = "quit()" ] || [ "$choice" = "quit(1)" ] || [ "$choice" = "stop" ];
+	then
+	exit 1 
+	fi
+
+
+
+	if [ "$choice" = "1" ];
+	then
+		d="/home/$user"
+	fi
+	if [ "$choice" = "2" ];
+	then
+		d="/home/$user/Desktop"
+	fi
+	if [ "$choice" = "3" ];
+	then
+		d="/home/$user/Trash"
+	fi
+	if [ "$choice" = "4" ];
+	then
+		d="/home/$user/Documents"
+	fi
+	if [ "$choice" = "5" ];
+	then
+		d="/home/$user/Music"
+	fi
+	if [ "$choice" = "6" ];
+	then
+		d="/home/$user/Pictures"
+
+	fi
+	if [ "$choice" = "7" ];
+	then
+		d="/home/$user/Videos"
+	fi
+	if [ "$choice" = "8" ];
+	then
+		d="/home/$user/Downloads"
+	fi
+
+
+if [ "$choice" = "1" ] || [ "$choice" = "2" ] || [ "$choice" = "3" ] || [ "$choice" = "4" ] || [ "$choice" = "5" ] || [ "$choice" = "6" ]|| [ "$choice" = "7" ] || [ "$choice" = "8" ] ;
+then 
+dat=$(date '+%d/%m/%Y' | tr -d '/' );
+dat1="backup$dat"
+d1="/home/$user/achieve"
+mkdir $d1
+cd $d1
+tar -czvf $dat1.tar.gz $d
+cd
+./gdrive-linux-x64 upload /home/$user/achieve/$dat1.tar.gz
+rm -r /home/$user/achieve
+exit
+else
+dat=$(date '+%d/%m/%Y' | tr -d '/' );
+dt1="backup$dt"
+d1="/home/$user/achieve"
+mkdir $d1
+cd $d1 
+tar -czvf $dat1.tar.gz $choice
+cd
+./gdrive-linux-x64 upload /home/$user/achieve/$dat1.tar.gz
+rm -r /home/$user/achieve
+exit
+fi
+
+fi
+#======================================================================================
+
+
+
+if [ "$input" = "1t" ];
+then
+
+flag="false"
+
+while [ "$flag" = "false" ]
+do
+echo "
+==============================Chose your method==================================
+|b| For full backup of your computer use                 
+|t| For transfer for files(This will be manual input) use
+|d| For easy transfer meaning deskop to desktop    
+-------------------------------------------------------------------------------- 
+To exit use: exit     
+=================================================================================="
+read -p "Enter your method " input2
+
+if [ "$input2" = "exit" ] || [ "$input2" = "exit()" ] || [ "$input2" = "exit(1)" ] || [ "$input2" = "q" ] || [ "$input2" = "quit" ] || [ "$input2" = "quit()" ] || [ "$input2" = "quit(1)" ] || [ "$input2" = "stop" ];
+	then
+	exit 1 
+	fi
+if [ "$input2" = "b" ]|| [ "$input2" = "B" ] ||[ "$input2" = "1" ] ||[ "$input2" = "back" ]||[ "$input2" = "backup" ]||[ "$input2" = "backups" ] || [ "$input2" = "t" ] || [ "$input2" = "d" ] || [ "$input" = "2t" ]||[ "$input" = "2T" ]||[ "$input" = "2" ]||[ "$input" = "2T" ];
+then
+flag="true"
+else
+flag="false"
+echo "*******************************************"
+echo "You have inputed $input2"
+echo "Valid options are b or t or d"
+echo "Try Again"
+echo "*******************************************"
+fi
+done
+
+
+read -p "Enter Your E Name: " name
+read -s -p "Enter Your Password: "  pass
+echo ""
+	p1="sshpass -p "
+	p2="'"
+	p3="'"
+	p4=" ssh "
+	p10="@"
+	p11=".cs.colostate.edu "
+	p12="'mkdir -p' "
+	p13="/s/bach/"
+	p14="/under/"
+	p15="/Desktop/transfer"
+	p16="'"
+	p17=" scp "
+	p18=".cs.colostate.edu"
+	space=" "
+	sem=":"
+#===============================b option================================ not done yet
+if [ "$input2" = "b" ]|| [ "$input2" = "B" ] ||[ "$input2" = "1" ] ||[ "$input2" = "back" ]||[ "$input2" = "backup" ]||[ "$input2" = "backups" ];
+then
+user=$(whoami)
+echo "
+===================Choose what diretory to backup===========================
+|1| $user      | /home/$user          | beware this is everything
+|2| Desktop   | /home/$user/Desktop  |   
+|3| Trash     | /home/$user/Trash    | why are are you doing this
+|4| Documents | /home/$user/Documents| mainly anything write
+|5| Music     | /home/$user/Music    | hope you don't have alot
+|6| Pictures  | /home/$user/Pictures | this can be big beware
+|7| Videos    | /home/$user/Videos   | Video files take up alot of space
+|8| Downloads | /home/$user/Downloads| I guess you can do this 
+| | anything  | /                    | input the directory you want to backup
+=============================================================================="
+
+
+
+read -p "Enter your choice " choice
+	if [ "$choice" = "1" ];
+	then
+		d="/home/$user"
+	fi
+	if [ "$choice" = "2" ];
+	then
+		d="/home/$user/Desktop"
+	fi
+	if [ "$choice" = "3" ];
+	then
+		d="/home/$user/Trash"
+	fi
+	if [ "$choice" = "4" ];
+	then
+		d="/home/$user/Documents"
+	fi
+	if [ "$choice" = "5" ];
+	then
+		d="/home/$user/Music"
+	fi
+	if [ "$choice" = "6" ];
+	then
+		d="/home/$user/Pictures"
+	fi
+	if [ "$choice" = "7" ];
+	then
+		d="/home/$user/Videos"
+	fi
+	if [ "$choice" = "8" ];
+	then
+		d="/home/$user/Downloads"
+	fi
+echo "Example of path on lab computer /s/bach/d/under/$name/Desktop/transfer/test"
+echo "Example of path on lab computer /s/bach/n/under/$name/Desktop/transfer/test"
+echo "******************If not known use: n or d******************"
+read -p "Whats you LETTER after bach/ and before /under:  " letter
+
+if [ "$choice" = "1" ] || [ "$choice" = "2" ] || [ "$choice" = "3" ] || [ "$choice" = "4" ] || [ "$choice" = "5" ] || [ "$choice" = "6" ]|| [ "$choice" = "7" ] || [ "$choice" = "8" ] ;
+then 
+dat=$(date '+%d/%m/%Y' | tr -d '/' );
+dat1="backup$dat"
+d1="/home/$user/achieve"
+tm="/s/bach/$letter/under/$name/Desktop/transfer"
+mkdir $d1
+cd $d1
+tar -czvf $dat1.tar.gz $d
+cd
+path="/home/$user/achieve/$dat1.tar.gz"
+eval $p1$p2$pass$p3$p17$path$space$name$p10$c$p18$sem$tm 
+
+rm -r /home/$user/achieve
+exit
+else
+dat=$(date '+%d/%m/%Y' | tr -d '/' );
+dt1="backup$dt"
+d1="/home/$user/achieve"
+tm="/s/bach/$letter/under/$name/Desktop/transfer"
+mkdir $d1
+cd $d1 
+tar -czvf $dat1.tar.gz $choice
+cd
+path="/home/$user/achieve/$choice.tar.gz"
+
+
+eval $p1$p2$pass$p3$p17$path$space$name$p10$c$p18$sem$tm 
+
+rm -r /home/$user/achieve
+exit
+fi
+
+
+
+
+
+
+
+fi
+
+#====================== t option ==========================================
+if [ "$input2" = "t" ]||[ "$input2" = "2" ]||[ "$input2" = "T" ]||[ "$input2" = "tranfer" ]||[ "$input2" = "Tranfer" ]||[ "$input2" = "tranfers" ]||[ "$input2" = "Tranfers" ];
+then
+
+#tm="/s/bach/$letter/under/$name/Desktop/transfer"
+#tr="transfer/"
+sem=":"
+
+echo " "
+echo "*****Example something like /home/$wh/Desktop/transfer******"
+read -p "Put in the directoy that is on THIS COMPUTER " files1
+flag="false"
+while [ $flag = "false"  ]
+do
+if [ -d "$files1" ];
+then
+echo "Your directory exist"
+flag="true"     
+else
+echo "Your Directory DOES NOT EXIST"
+read -p "Put in the directoy that is on this computer " files1
+flag="false"
+fi
+done
+echo "*****Beware some account use a d or n for unknown reasons*****"
+echo "Example of path on lab computer /s/bach/d/under/$name/Desktop/transfer"
+echo "Example of path on lab computer /s/bach/n/under/$name/Desktop/transfer"
+echo "Example of path on lab computer /s/bach/n/under/$name/"
+read -p "Put in the directoy on YOUR CSU COMPUTER " files2
+#read -p "Whats you letter after bach/ and before /under. If not known use: n or d " letter
+#files1="$path$tr"
+cd $files1
+dir=`pwd`
+echo $dir
+for f in "$dir"/* 
+do
+#test="$f | rev | cut -d"/" -f1 | rev"
+fname=$(eval echo $f| rev | cut -d'/' -f1 | rev)
+#echo $fname
+space=" "    
+#eval $x
+#y=$(eval $x)
+
+eval $p1$p2$pass$p3$p17$path$tr$fname$space$name$p10$c$p18$sem$files2 
+done
+fi
+#==============================end of t option=====================================================
+
+
+
+#===================================for d option============================
+if [ "$input2" = "d" ];
+then
+
+
+echo " "
+read -p "Whats you letter after bach/ and before /under. If not known use: n or d: " letter
+
+
+tm="/s/bach/$letter/under/$name/Desktop/transfer"
+
+eval $p1$p2$pass$p3$p4$p5$p6$p7$p8$p9$name$p10$c$p11$space$p12$tm
+
+
+wh=$(whoami)
+path="/home/$wh/Desktop/"
+if [ -d "$path/transfer" ];
+then
+&> /dev/null         
+else
+mkdir $path/transfer   # makes the directory
+fi
+
+
+
+tr="transfer/"
+sem=":"
+files="$path$tr"
+cd $files
+dir=`pwd`
+echo $dir
+for f in "$dir"/* 
+do
+#test="$f | rev | cut -d"/" -f1 | rev"
+fname=$(eval echo $f| rev | cut -d'/' -f1 | rev)
+#echo $fname
+space=" "    
+#eval $x
+#y=$(eval $x)
+eval $p1$p2$pass$p3$p17$path$tr$fname$space$name$p10$c$p18$sem$tm 
+done
+#eval $p1$p2$pass$p3$p4$name$p10$c$p11$p12$p13$letter$p14$name$p15$p16
+fi
+fi
+#================================end of d=======================
+
+
+
+p1="sshpass -p "
+p2="'"
+p3="'"
+p4=" ssh "
+p10="@"
+p11=".cs.colostate.edu "
+p12="'mkdir -p "
+p13="/s/bach/"
+p14="/under/"
+p15="/Desktop/transfer"
+p16="'"
+p17=" scp "
+p18=".cs.colostate.edu"
+space=" "
+sem=":"
+
+#$p1$p2$pass$p3$p17$name$p10$c$p18$sem$files1$space$files2
+
+if [ "$input" = "2t" ]||[ "$input" = "2T" ]||[ "$input" = "2" ]||[ "$input" = "2T" ];
+then
+wh=$(whoami)
+read -p "Enter Your E Name: " name
+read -s -p "Enter Your Password: "  pass
+
+
+
+sem=":"
+
+echo " "
+echo "******Example something like /home/$wh/Desktop/******"
+read -p "Put in the directoy that is on THIS COMPUTER " files1
+flag="false" 
+while [ $flag = "false"  ]
+do
+if [ -d "$files1" ];
+then
+echo "Your directory exist"
+flag="true"     
+else
+echo "Your Directory DOES NOT EXIST"
+read -p "Put in the directoy that is on THIS COMPUTER " files1
+flag="false"
+fi
+done
+echo "*****Beware some account use a d or n for unkown reasons*****"
+echo "Example of path on lab computer /s/bach/d/under/$name/Desktop/transfer/test"
+echo "Example of path on lab computer /s/bach/n/under/$name/Desktop/transfer/test"
+echo "Example of path on lab computer /s/bach/n/under/$name/Desktop/transfer"
+echo "Example of path on lab computer /s/bach/n/under/$name/"
+read -p "Put in the directoy on YOUR CSU COMPUTER that you want to move to this one " files2
+#read -p "Whats you letter after bach/ and before /under. If not known use: n or d " letter
+#files1="$path$tr"
+#cd $files1
+#dir=`pwd`
+#echo $dir
+#for f in "$dir"/* 
+#do
+#test="$f | rev | cut -d"/" -f1 | rev"
+#fname=$(eval echo $f| rev | cut -d'/' -f1 | rev)
+#echo $fname
+space=" "    
+#eval $x
+#y=$(eval $x)
+
+eval $p1$p2$pass$p3$p17$name$p10$c$p18$sem$files2$space$files1 
+#done
+
+fi
+if [ "$input" = "inf" ] || [ "$input" = "info" ] || [ "$input" = "in" ] || [ "$input" = "INFO" ] || [ "$input" = "Info" ] || [ "$input" = "iNFO" ] || [ "$input" = "inFO" ] || [ "$input" = "infO" ] || [ "$input" = "I" ];
+then
+echo "
+========================CSU CS COMPUTER LAB INFORMATION==================================
+more informations at http://www.cs.colostate.edu/~info/
+-----------------------------------------------------------------------------------------
+|lab| Computer lab ssh HP lab computer info give you a list of there information
+|ins| Whats in installed on lab computers
+-----------------------------------------------------------------------------------------
+"
+read -p "Enter your choice " input
+
+
+if [ "$input" = "exit" ] || [ "$input" = "exit()" ] || [ "$input" = "exit(1)" ] || [ "$input" = "q" ] || [ "$input" = "quit" ] || [ "$input" = "quit()" ] || [ "$input" = "quit(1)" ] || [ "$input" = "stop" ];
+	then
+	exit 1 
+	fi
+
+
+
+
+
+
+
+
+if [ "$input" = "lab" ] || [ "$input" = "LAB" ]|| [ "$input" = "L" ]|| [ "$input" = "l" ]|| [ "$input" = "LA" ]|| [ "$input" = "LB" ]|| [ "$input" = "lab" ]|| [ "$input" = "la" ]|| [ "$input" = "labs" ]|| [ "$input" = "Labs" ];
+then
+
+
+
+
+
+
+
+echo "
+================================================================================================================================================
+|   |    NAME	     |         TYPE	     |    CPU  |  RAM |      OS       |  USE    |  LOCATION	  |     S/N      |   MAC ADDRESS  
+|1  |albany	     | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA3349121X  | 2c:44:fd:26:90:0e
+|2  |annapolis	     | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA3349121Q  | 2c:44:fd:26:8f:f0
+|3  |atlanta	     | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA3349120Y  | 2c:44:fd:15:3b:a7
+|4  |augusta	     | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA33349120H | 2c:44:fd:26:8c:81
+|5  |austin	     | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA33349121W | 2c:44:fd:15:3d:ca
+|6  |baton-rouge     | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA33349120T | 2c:44:fd:1c:7b:bd
+|7  |bismarck	     | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA33349121G | 2c:44:fd:15:3d:cd
+|8  |boise	     | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA33349120V | 74:46:a0:c3:bd:c6
+|9  |boston	     | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA33349121N | 2c:44:fd:15:3d:c7
+|10 |carson-city     | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA33349120X | 2c:44:fd:26:8f:6c
+|11 |charleston	     | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA33349120P | 2c:44:fd:1c:79:81
+|12 |cheyenne	     | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA333491211 | 74:46:a0:c3:bd:7e
+|13 |columbia	     | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA33349121S | 74:46:a0:c3:be:ba
+|14 |columbus-oh     | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA33349120Z | 2c:44:fd:26:8e:3b
+|15 |concord	     | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA33349120Q | 2c:44:fd:15:3c:1d
+|16 |denver	     | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA33349121Y | 74:46:a0:c3:be:b9
+|17 |des-moines	     | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA33349121L | 2c:44:fd:15:3d:c5
+|18 |dover	     | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA333491218 | 2c:44:fd:15:3b:5c
+|19 |frankfort	     | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA33349120K | 2c:44:fd:1c:78:57
+|20 |harrisburg	     | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA33349120N | 2c:44:fd:1c:79:1b
+|21 |hartford	     | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA33349121B | 2c:44:fd:1c:77:d6
+|22 |helena	     | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA33349120S | 2c:44:fd:1c:7b:26
+|23 |honolulu	     | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA33349121T | 2c:44:fd:1c:7c:64
+|24 |indianapolis    | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA33349120R | 2c:44:fd:1c:7b:c4
+|25 |jackson	     | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA33349120W | 2c:44:fd:26:8f:63
+|26 |jefferson-city  | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA333491213 | 2c:44:fd:26:8f:68
+|27 |juneau	     | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA33349121H | 2c:44:fd:15:3d:d1
+|28 |lansing	     | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA33349121C | 2c:44:fd:15:3b:58
+|29 |lincoln	     | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA333491215 | 2c:44:fd:26:8f:6b
+|30 |little-rock     | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA33349121J | 2c:44:fd:1c:7c:61
+|31 |madison	     | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA333491212 | 2c:44:fd:1c:7a:71
+|32 |montgomery      | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA333491212 | 2c:44:fd:15:3d:c6
+|33 |montpelier      | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA33349120M | 2c:44:fd:1c:78:f0
+|34 |nashville	     | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA33349120J | 2c:44:fd:26:8c:82
+|35 |oklahoma-city   | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA333491221 | 2c:44:fd:1c:7a:74
+|36 |olympia	     | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA333491216 | 2c:44:fd:15:3b:0d
+|37 |phoenix	     | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA333491219 | 2c:44:fd:26:8d:1d
+|38 |pierre	     | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA33349121D | 2c:44:fd:26:8c:b1
+|39 |providence      | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA33349121R | 2c:44:fd:26:90:0f
+|40 |raleiGH         | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA333491214 | 74:46:a0:c3:bd:9e
+|41 |richmond	     | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA33349121K | 2c:44:fd:26:90:10
+|42 |sacramento      | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA33349121Z | 2c:44:fd:15:3d:cb
+|43 |saint-paul      | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA333491210 | 2c:44:fd:1c:7a:21
+|44 |salem	     | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA33349121P | 74:46:a0:c3:be:b3
+|45 |salt-lake-city  | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA333491217 | 2c:44:fd:15:3a:c2
+|46 |santa-fe	     | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA333491220 | 74:46:a0:c3:be:8e
+|47 |springfield     | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA33349121V | 2c:44:fd:1c:7c:5f
+|48 |tallahassee     | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120-unix-lab    | 2UA33349120G | 2c:44:fd:1c:77:e6
+|49 |topeka	     | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120A-unix-lab   | 2UA3349120L  | 2c:44:fd:26:8d:21
+|49 |trenton	     | HP-Z420-XeonE5-2650v2 | 8x2.6GH | 32Gb | Linux(Fedora) | general | 120A-unix-lab   | 2UA3349121F  | 2c:44:fd:15:3a:c9
+|50 |washington-dc   | HP-Z230-XeonE3-1231v3 | 4x3.4GH | 32Gb | Linux(Fedora) | general | 120A-unix-lab	  | 2UA351328K9  | 8c:dc:d4:2b:e0:59
+|51 |earth	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 120E-unix-lab	  | 2UA363426J0  | dc:4a:3e:7d:0a:18
+|52 |jupiter	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 120E-unix-lab	  | 2UA363426H5  | dc:4a:3e:78:b2:17
+|53 |mars	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 120E-unix-lab	  | 2UA363426HZ  | dc:4a:3e:7f:11:58
+|54 |mercury	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 120E-unix-lab	  | 2UA363426HS  | dc:4a:3e:78:b2:11
+|55 |neptune	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 120E-unix-lab	  | 2UA363426H2  | dc:4a:3e:75:39:06
+|56 |saturn	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 120E-unix-lab	  | 2UA363426HG  | dc:4a:3e:75:39:68
+|57 |uranus	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 120E-unix-lab	  | 2UA363426HT  | dc:4a:3e:7c:88:f3
+|58 |venus	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 120E-unix-lab	  | 2UA363426HY  | dc:4a:3e:7f:11:56
+|59 |ankara	     | HP-Z230-XeonE3-1231v3 | 4x3.4GH | 32Gb | Linux(Fedora) | general | 215-interac-lab | 2UA351328KH  | 8c:dc:d4:29:ab:ec
+|60 |bagdad	     | HP-Z230-XeonE3-1231v3 | 4x3.4GH | 32Gb | Linux(Fedora) | general | 215-interac-lab | 2UA351328JS  | 8c:dc:d4:2b:df:02
+|61 |bangkok	     | HP-Z230-XeonE3-1231v3 | 4x3.4GH | 32Gb | Linux(Fedora) | general | 215-interac-lab | 2UA351328KL  | 8c:dc:d4:27:f1:f2
+|62 |beijing	     | HP-Z230-XeonE3-1231v3 | 4x3.4GH | 32Gb | Linux(Fedora) | general | 215-interac-lab | 2UA351328KK  | 8c:dc:d4:29:ab:f3
+|63 |berlin	     | HP-Z230-XeonE3-1231v3 | 4x3.4GH | 32Gb | Linux(Fedora) | general | 215-interac-lab | 2UA351328K3  | 8c:dc:d4:27:f0:3b
+|65 |cairo	     | HP-Z230-XeonE3-1231v3 | 4x3.4GH | 32Gb | Linux(Fedora) | general | 215-interac-lab | 2UA351328JP  | 8c:dc:d4:2b:df:00
+|66 |damascus        | HP-Z230-XeonE3-1231v3 | 4x3.4GH | 32Gb | Linux(Fedora) | general | 215-interac-lab | 2UA351328JZ  | 8c:dc:d4:2b:df:09
+|67 |dhaka	     | HP-Z230-XeonE3-1231v3 | 4x3.4GH | 32Gb | Linux(Fedora) | general | 215-interac-lab | 2UA351328KG  | 8c:dc:d4:27:f1:f9
+|68 |hanoi	     | HP-Z230-XeonE3-1231v3 | 4x3.4GH | 32Gb | Linux(Fedora) | general | 215-interac-lab | 2UA351328K7  | 8c:dc:d4:29:ab:e2
+|69 |hong-kong       | HP-Z230-XeonE3-1231v3 | 4x3.4GH | 32Gb | Linux(Fedora) | general | 215-interac-lab | 2UA351328JV  | 8c:dc:d4:29:aa:d8
+|70 |jakarta	     | HP-Z230-XeonE3-1231v3 | 4x3.4GH | 32Gb | Linux(Fedora) | general | 215-interac-lab | 2UA351328JY  | 8c:dc:d4:2b:df:4a
+|71 |kabul	     | HP-Z230-XeonE3-1231v3 | 4x3.4GH | 32Gb | Linux(Fedora) | general | 215-interac-lab | 2UA351328KJ  | 8c:dc:d4:29:ab:e5
+|72 |kinshasa        | HP-Z230-XeonE3-1231v3 | 4x3.4GH | 32Gb | Linux(Fedora) | general | 215-interac-lab | 2UA351328K5  | 8c:dc:d4:27:f1:e7
+|73 |lima	     | HP-Z230-XeonE3-1231v3 | 4x3.4GH | 32Gb | Linux(Fedora) | general | 215-interac-lab | 2UA351328K8  | 8c:dc:d4:27:f1:f4
+|74 |london	     | HP-Z230-XeonE3-1231v3 | 4x3.4GH | 32Gb | Linux(Fedora) | general | 215-interac-lab | 2UA351328JW  | 8c:dc:d4:27:f0:73
+|75 |madrid	     | HP-Z230-XeonE3-1231v3 | 4x3.4GH | 32Gb | Linux(Fedora) | general | 215-interac-lab | 2UA351328KF  | 8c:dc:d4:27:f1:ff
+|76 |mexico-city     | HP-Z230-XeonE3-1231v3 | 4x3.4GH | 32Gb | Linux(Fedora) | general | 215-interac-lab | 2UA351328K4  | 8c:dc:d4:27:f1:eb
+|77 |moscow	     | HP-Z230-XeonE3-1231v3 | 4x3.4GH | 32Gb | Linux(Fedora) | general | 215-interac-lab | 2UA351328JQ  | 8c:dc:d4:29:ab:00
+|78 |pyongyang       | HP-Z230-XeonE3-1231v3 | 4x3.4GH | 32Gb | Linux(Fedora) | general | 215-interac-lab | 2UA351328KB  | 8c:dc:d4:29:ab:f4
+|79 |riyadh	     | HP-Z230-XeonE3-1231v3 | 4x3.4GH | 32Gb | Linux(Fedora) | general | 215-interac-lab | 2UA351328K1  | 8c:dc:d4:27:f0:74
+|80 |santiago        | HP-Z230-XeonE3-1231v3 | 4x3.4GH | 32Gb | Linux(Fedora) | general | 215-interac-lab | 2UA351328KC  | 8c:dc:d4:29:ab:f9
+|81 |seoul	     | HP-Z230-XeonE3-1231v3 | 4x3.4GH | 32Gb | Linux(Fedora) | general | 215-interac-lab | 2UA351328K2  | 8c:dc:d4:29:aa:d7
+|82 |singapore       | HP-Z230-XeonE3-1231v3 | 4x3.4GH | 32Gb | Linux(Fedora) | general | 215-interac-lab | 2UA351328KD  | 8c:dc:d4:29:ab:f1
+|83 |tehran	     | HP-Z230-XeonE3-1231v3 | 4x3.4GH | 32Gb | Linux(Fedora) | general | 215-interac-lab | 2UA351328JX  | 8c:dc:d4:2b:df:0f
+|84 |tokyo	     | HP-Z230-XeonE3-1231v3 | 4x3.4GH | 32Gb | Linux(Fedora) | general | 215-interac-lab | 2UA351328JT  | 8c:dc:d4:2b:df:0a
+|85 |a-basin	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 225-interac-lab | 2UA363426H7  | dc:4a:3e:7c:89:02
+|86 |ajax	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 225-interac-lab | 2UA363426H4  | dc:4a:3e:75:39:0b
+|87 |beaver-creek    | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 225-interac-lab | 2UA363426H1  | dc:4a:3e:7c:88:8e
+|88 |breckenridge    | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 225-interac-lab | 2UA363426HR  | dc:4a:3e:78:b2:56
+|89 |buttermilk      | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 225-interac-lab | 2UA363426HB  | dc:4a:3e:78:b2:75
+|90 |cooper	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 225-interac-lab | 2UA363426H9  | dc:4a:3e:75:39:7d
+|91 |copper-mtn      | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 225-interac-lab | 2UA363426GZ  | dc:4a:3e:7c:88:8b
+|92 |crested-butte   | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 225-interac-lab | 2UA363426HH  | dc:4a:3e:75:39:81
+|93 |eldora	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 225-interac-lab | 2UA363426GY  | dc:4a:3e:78:b2:16
+|94 |grandby-ranch   | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 225-interac-lab | 2UA363426HV  | dc:4a:3e:78:b2:76
+|95 |aspen-hiG lands | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 225-interac-lab | 2UA363426H6  | dc:4a:3e:75:39:0a
+|96 |howelsen-hill   | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 225-interac-lab | 2UA363426H0  | dc:4a:3e:75:38:f8
+|97 |keystone	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 225-interac-lab | 2UA363426H3  | dc:4a:3e:7c:88:7e
+|98 |loveland	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 225-interac-lab | 2UA363426HX  | dc:4a:3e:7d:0a:1a
+|99 |mary-jane	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 225-interac-lab | 2UA363426HN  | dc:4a:3e:7c:88:fe
+|100|monarch	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 225-interac-lab | 2UA363426HL  | dc:4a:3e:75:39:83
+|101|powderhorn      | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 225-interac-lab | 2UA363426HC  | dc:4a:3e:78:b2:6e
+|102|purgatory	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 225-interac-lab | 2UA363426HP  | dc:4a:3e:7c:88:ff
+|103|silverton	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 225-interac-lab | 2UA363426HK  | dc:4a:3e:75:39:6d
+|104|snowmass	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 225-interac-lab | 2UA363426HM  | dc:4a:3e:75:39:74
+|105|steamboat	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 225-interac-lab | 2UA363426HD  | dc:4a:3e:78:b2:6c
+|106|sunliGH t	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 225-interac-lab | 2UA363426H8  | dc:4a:3e:75:39:7e
+|107|telluride	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 225-interac-lab | 2UA363426HF  | dc:4a:3e:7c:89:04
+|108|vail	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 225-interac-lab | 2UA363426HW  | dc:4a:3e:7d:0a:17
+|109|winter-park     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 225-interac-lab | 2UA363426HQ  | dc:4a:3e:7c:88:87
+|110|wolf-creek      | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 225-interac-lab | 2UA363426HJ  | dc:4a:3e:7c:88:e9
+|111|anchovy         | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 325-interac-lab | 2UA37321Q2R  | c8:d3:ff:ba:5f:a4
+|112|barracuda	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 325-interac-lab | 2UA37321Q30  | c8:d3:ff:ba:5f:a0
+|113|blowfish	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 325-interac-lab | 2UA37321Q34  | c8:d3:ff:ba:5f:b0
+|114|bonito	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 325-interac-lab | 2UA37321Q36  | c8:d3:ff:ba:5f:a5
+|115|brill	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 325-interac-lab | 2UA37321Q2W  | c8:d3:ff:be:84:1c
+|116|bullhead	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 325-interac-lab | 2UA37321Q32  | c8:d3:ff:be:84:21
+|117|char	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 325-interac-lab | 2UA37321Q2T  | c8:d3:ff:ba:5f:b7
+|118|cod	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 325-interac-lab | 2UA37321Q2N  | c8:d3:ff:be:81:80
+|119|dorado	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 325-interac-lab | 2UA37321Q2Y  | c8:d3:ff:be:83:fa
+|120|eel	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 325-interac-lab | 2UA37321Q35  | c8:d3:ff:ba:5f:ad
+|121|flounder	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 325-interac-lab | 2UA37321Q2V  | c8:d3:ff:be:81:86
+|122|grouper	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 325-interac-lab | 2UA37321Q39  | c8:d3:ff:ba:5f:98
+|123|halibut	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 325-interac-lab | 2UA37321Q2L  | c8:d3:ff:ba:5d:26
+|124|herring	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 325-interac-lab | 2UA37321Q2Z  | c8:d3:ff:ba:5d:1f
+|125|mackerel	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 325-interac-lab | 2UA37321Q2X  | c8:d3:ff:be:84:20
+|126|marlin	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 325-interac-lab | 2UA37321Q2J  | c8:d3:ff:ba:5c:b8
+|127|perch	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 325-interac-lab | 2UA37321Q2P  | c8:d3:ff:be:81:63
+|128|pollock	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 325-interac-lab | 2UA37321Q2S  | c8:d3:ff:ba:5d:28
+|129|sardine	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 325-interac-lab | 2UA37321Q3B  | c8:d3:ff:be:84:1b
+|130|shark	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 325-interac-lab | 2UA37321Q37  | c8:d3:ff:be:84:22
+|131|sole	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 325-interac-lab | 2UA37321Q2M  | c8:d3:ff:be:81:82
+|132|swordfish	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 325-interac-lab | 2UA37321Q2K  | c8:d3:ff:be:81:81
+|133|tarpon	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 325-interac-lab | 2UA37321Q31  | c8:d3:ff:be:84:28
+|134|turbot	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 325-interac-lab | 2UA37321Q38  | c8:d3:ff:be:84:14
+|135|tuna	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 325-interac-lab | 2UA37321Q2Q  | c8:d3:ff:ba:5d:27
+|136|wahoo	     | HP-Z440-XeonE5-1650v4 | 6x3.6GH | 32Gb | Linux(Fedora) | general | 325-interac-lab | 2UA37321Q33  | c8:d3:ff:be:84:1f
+================================================================================================================================================
+"
+fi
+
+if [ "$input" = "ins" ] || [ "$input" = "in" ] || [ "$input" = "IN" ] || [ "$input" = "In" ]|| [ "$input" = "iN" ]|| [ "$input" = "INS" ]|| [ "$input" = "inS" ]|| [ "$input" = "iNs" ]|| [ "$input" = "Ins" ]|| [ "$input" = "install" ]|| [ "$input" = "Install" ]|| [ "$input" = "INSTALL" ]|| [ "$input" = "installed" ]|| [ "$input" = "INSTALLED" ];
+
+then
+nsp=" | "
+echo "
+
+                        CSU CS Unix Software Catalogue
+This catalogue contains a list of all software packages and products
+installed on the CSU Computer Science Unix Systems.  Please contact
+sna@cs.colostate.edu with any corrections or additional software
+that you would like installed.
+
+To list the software packages on a Fedora or RedHat machine that
+have been installed from the standard repositories use the following
+command:
+
+	rpm -qa | grep -i packagename
+
+All additional software that has been installed is listed alphabetically
+below in the following format:
+
+	Package -- Description
+		OS Architecture
+			paths
+		Notes
+                        environment variable settings, etc
+Name      | Description
+----------|------------------------------------------------------------------------------------------
+Abyss     | Assembly By Short Sequences - 
+          | a de novo, parallel, paired-end sequence assembler.
+          | Fedora x86_64
+          | /usr/local/abyss
+----------|------------------------------------------------------------------------------------------
+Alice     | Java teaching software
+          | Fedora x86_64
+          | /usr/local/Alice
+          | Notes:
+	  | Run with /usr/local/Alice/Required/run-alice
+----------|------------------------------------------------------------------------------------------
+allegro   | game programming library
+	  | Fedora x86_64
+	  |	/s/parsons/l/sys/allegro
+----------|------------------------------------------------------------------------------------------
+AMDSDK    | AMD software development kit
+	  | Fedora x86_64
+	  |	/usr/local/amdSDK
+	  |	/usr/local/amdSDK/AMD-APP-SDK-v2.7-RC-lnx32
+	  |	/usr/local/etc/OpenCL
+	  |	/usr/local/bin/clinfo
+	  |	/usr/local/lib/OpenCL
+----------|------------------------------------------------------------------------------------------
+anaconda  | Python distribution for large-scale data processing, predictive analytics and scientific
+	  | computing.
+	  | Fedora x86_64
+	  |	/usr/local/anaconda
+	  | Notes:
+	  |	export PATH='/usr/local/anaconda/bin:PATH'
+	  |	python --version
+	  |	conda --version
+----------|------------------------------------------------------------------------------------------		
+android   | Google Android development kit
+	  | Fedora x86_64
+	  |	/usr/local/android
+----------|------------------------------------------------------------------------------------------
+ArgoUML   | UML diagramming application
+	  | Fedora x86_64
+	  |	/usr/local/ArgoUML
+----------|------------------------------------------------------------------------------------------
+armadillo |  C++ linear algebra library
+	  |  Fedora x86_64
+	  |	/usr/local/armadillo
+----------|------------------------------------------------------------------------------------------
+atlas     | Automatically Tuned Linear Algebra Subroutines
+	  | Fedora x86_64
+	  |	/usr/local/atlas
+----------|------------------------------------------------------------------------------------------
+Atom  	  | A hackable text editor for the 21st Century
+	  | Fedora x86_64
+          |     /usr/local/atom
+----------|------------------------------------------------------------------------------------------
+Autodia   |automatic generation of UML diagrams
+	  |Fedora x86_64
+	  |	/usr/local/Autodia
+--------- |------------------------------------------------------------------------------------------
+bcl2fastq2|  To convert base call (BCL) files from Illumina sequencing instruments into FASTQ files
+	  | Fedora x86_64
+          |     /usr/local/bcl2fastq2
+----------|-----------------------------------------------------------------------------------------
+bibtex2htm|  
+	  | Fedora x86_64
+	  |	/usr/local/localtex/bibtex2html-1.56-linux
+----------|-----------------------------------------------------------------------------------------
+bioperl   |
+	  | Fedora x86_64
+	  |	/usr/local/bioperl
+----------|-----------------------------------------------------------------------------------------
+bison     |
+	  | Fedora x86_64
+	  |	/usr/local/bison
+----------|-----------------------------------------------------------------------------------------
+bitarray  | python library that returns a new array of bits.
+	  | Fedora x86_64
+	  |	/usr/local/bitarray
+	  |
+	  |	Note :
+	  |		You need to export the pythonpath:
+	  |		export PYTHONPATH='PYTHONPATH:/usr/local/bitarray/lib64/python2.7/site-packages/'
+----------|-----------------------------------------------------------------------------------------
+bokeh     | Python interactive visualization library that targets modern web browsers for presentation
+	  | Fedora x86_64
+	  |	/usr/local/bokeh
+	  |	Note: 
+	  |	export PYTHONPATH=/usr/local/bokeh/lib/python2.7/site-packages
+          |
+----------|-----------------------------------------------------------------------------------------
+boost     | C++ multi-purpose library
+	  | Fedora x86_64
+	  |	/usr/local/boost
+          |
+----------|-----------------------------------------------------------------------------------------
+barvinok  | library for counting the number of integer points in parametric and non-parametric polytopes
+	  |  Fedora x86_64
+	  |	/usr/local/barvinok
+          |
+----------|-----------------------------------------------------------------------------------------
+bowtie    | an ultrafast, memory-efficient short read aligner for short 
+          | DNA sequences
+          | Fedora x86_64
+	  |	/usr/local/bowtie
+----------|-----------------------------------------------------------------------------------------
+biopython | set of freely available tools for biological computation written in Python
+	  | Notes: add this in your .bashrc
+	  | export PYTHONPATH=/usr/local/biopython/lib64/python3.5/site-packages
+----------|-----------------------------------------------------------------------------------------
+biom-     |
+format    |
+	  | The Biological Observation Matrix (BIOM) format
+	  | Fedora x86_64
+	  |	/usr/local/biom-format
+----------|-----------------------------------------------------------------------------------------
+blat      | Blat is a genome alignment tool 
+	  | Fedora x86_64
+	  |	/usr/local/blat
+----------|-----------------------------------------------------------------------------------------
+blast+    | command-line tools to run BLAST (Basic Local Alignment Search Tool)
+          | Fedora x86_64
+          |      /usr/local/blast+
+	  |  Notes: Add this in your .bashrc
+	  |	export PATH='PATH:/usr/local/blast/bin'
+	  |	export BLASTDB='/usr/local/blastdb'
+----------|-----------------------------------------------------------------------------------------
+bwa 	  | Burrows-Wheeler Aligner 
+	  | Fedora X86_64
+	  |	/usr/local/bin/bwa
+----------|-----------------------------------------------------------------------------------------
+cabal     | Haskell package management tool
+	  | Fedora x86_64
+	  |	/usr/local/cabal
+----------|-----------------------------------------------------------------------------------------
+celera    | Celera Assembler is a de novo whole-genome shotgun (WGS) 
+	  | DNA sequence assembler
+	  | Fedora x86_64
+	  |	/usr/local/celera
+----------|-----------------------------------------------------------------------------------------
+ch        | C/C++ interpreter
+	  | Fedora x86_64
+	  |	/usr/local/ch
+----------|-----------------------------------------------------------------------------------------
+circos    | circular visualization of data and information
+          | Fedora x86_64
+          |      /usr/local/circos
+----------|-----------------------------------------------------------------------------------------
+clafer    | language for software modeling and analysis
+	  | Fedora x86_64
+	  |	/usr/local/clafer
+----------|-----------------------------------------------------------------------------------------
+clapack   | C linear algebra library
+	  | Fedora x86_64
+	  |	/usr/local/clapack
+----------|-----------------------------------------------------------------------------------------
+cmake     | build system
+	  | Fedora x86_64
+	  |	/usr/local/cmake
+----------|-----------------------------------------------------------------------------------------
+cpuburn   | CPU load testing tool
+	  | Fedora x86_64
+	  | RedHat
+	  |	/usr/local/cpuburn
+----------|-----------------------------------------------------------------------------------------
+ctypeslib | python C interoperability
+	  | Fedora x86_64
+ 	  |	/usr/local/ctypeslib
+----------|-----------------------------------------------------------------------------------------
+cuda      | Compute Unified Device Architecture, GPU programming tools
+	  | Fedora x86_64
+	  |	/usr/local/cuda
+	  | Notes:
+	  |	See ~info/cuda-faq.html for setup instructions
+----------|-----------------------------------------------------------------------------------------
+"
+echo "
+==========================================================
+|more| type more for more information
+---------------------------------------------------------
+"
+read -p "Enter your choice " input
+
+
+
+if [ "$input" = "more" ];
+then
+
+echo "
+cutadapt -- Cutadapt finds and removes adapter sequences, primers, poly-A tails and other types of unwanted sequence from your high-throughput sequencing reads
+	Fedora x86_64
+		/usr/local/cutadapt
+----------------------------------------------------------------------------------------------------
+cvxopt -- convex optimization tools for python
+	Fedora x86_64
+		/usr/local/cvxopt
+----------------------------------------------------------------------------------------------------
+cvxpy -- convex optimization tools for python
+	Fedora x86_64
+		/usr/local/cvxpy
+	Notes:
+		export PYTHONPATH=/usr/local/cvxpy-0.2.2/lib/python2.7/site-packages
+----------------------------------------------------------------------------------------------------
+DataAnalysis -- Data analysis for 454 Sequencing System Software
+	Fedora x86_64
+		/usr/local/DataAnalysis
+----------------------------------------------------------------------------------------------------
+dask -- Dask provides multi-core execution on larger-than-memory datasets using blocked algorithms and task scheduling
+	Fedora x86_64
+	Notes:
+                export PYTHONPATH=/usr/local/dask/lib/python2.7/site-packages
+
+----------------------------------------------------------------------------------------------------
+dia2code -- generage code stubs from UML diagrams
+	Fedora x86_64
+		/usr/local/dia2code
+----------------------------------------------------------------------------------------------------
+dpkt -- python packet creation / parsing library
+        Fedora x86_64
+                /usr/local/dpkt
+        Notes:
+                Add the following to environment:
+                export PYTHONPATH=/usr/local/dpkt/lib/python2.7/site-packages:{PYTHONPATH}
+----------------------------------------------------------------------------------------------------
+eclipse -- integrated development environment
+	Fedorax x86_64
+		/usr/local/bin/eclipse.sh
+	Notes:
+		/usr/bin/eclipse may hang if /usr/local/java/bin/java comes
+		before /usr/bin/java in your PATH environment variable
+----------------------------------------------------------------------------------------------------
+FDR -- Failures-Divergences Refinement, model checking
+	Fedora x86_64
+		/usr/local/FDR
+----------------------------------------------------------------------------------------------------
+fann -- Fast Artificial Neural Network Library
+	Fedora x86_64
+		/usr/local/fann
+	Note:
+		When compiling make sure to specify:
+			-I/usr/local/fann/include
+			-L/usr/local/fann/lib
+			-lfann
+		When running make sure to do:
+			export LD_LIBRARY_PATH=/usr/local/fann/lib
+
+----------------------------------------------------------------------------------------------------
+fastx_tools -- FASTQ/A short-reads pre-processing tools
+	Fedora x86_64
+		/usr/local/fastx_toolkit
+----------------------------------------------------------------------------------------------------
+ffmpeg -- video/audio encoder/decoder library
+	Fedora x86_64
+		/usr/local/ffmpeg
+	Notes:
+		Add the following to .bashrc
+			export PATH=/usr/local/ffmpeg/bin:{PATH}
+			export LD_LIBRARY_PATH=/usr/local/ffmpeg/lib:{LD_LIBRARY_PATH}
+		or in .cshrc
+			set path = ( /usr/local/ffmpeg/bin path )
+			setenv LD_LIBRARY_PATH /usr/local/ffmpeg/lib:{LD_LIBRARY_PATH}
+----------------------------------------------------------------------------------------------------
+firefox -- web browser
+	Fedora x86_64
+		/usr/local/firefox
+	Notes:
+		Uses Oracle java plugin
+----------------------------------------------------------------------------------------------------
+fltk -- C++ gui library
+	Fedora x86_64
+		/usr/local/fltk
+----------------------------------------------------------------------------------------------------
+gap -- Groups, Algorithms, Programming
+	Fedora x86_64
+		/usr/local/gap
+----------------------------------------------------------------------------------------------------
+gcc -- gnu c compiler collection
+	Fedora x86_64
+	RedHat
+		/usr/local/gcc
+----------------------------------------------------------------------------------------------------
+gd -- php image library
+	Fedora x86_64
+		/usr/local/gd
+----------------------------------------------------------------------------------------------------
+GeneTorrent -- Client software for downloading sequence data from CGHub's repository.
+	Fedora x86_64
+		/usr/local/GeneTorrent
+----------------------------------------------------------------------------------------------------
+git -- revision control system
+	Mac OSX i386
+	RedHat
+		/usr/local/git
+----------------------------------------------------------------------------------------------------
+genesis -- GEneral NEural SImulation System
+	Fedora i386
+		/usr/local/genesis
+	Notes:
+		Copy ~info/dot.files/.simrc to home directory
+----------------------------------------------------------------------------------------------------
+glade -- A user Interface Designer tool to enable quick & easy development of user interfaces for the GTK+ toolkit and the GNOME desktop environment.
+	Fedorar x86_64
+		/usr/local/glade
+----------------------------------------------------------------------------------------------------
+gmp -- arbitrary precision math library
+	RedHat
+		/usr/local/gmp
+----------------------------------------------------------------------------------------------------
+go -- google go programming language
+	Fedora x86_64
+		/usr/local/go
+----------------------------------------------------------------------------------------------------
+hadoop -- Map Reduce framework
+	Fedora x86_64
+		/usr/local/hadoop
+----------------------------------------------------------------------------------------------------
+hisat2 -- graph-based alignment of next generation sequencing reads to a population of genomes
+	Fedora x86_64
+		/usr/local/hisat2
+----------------------------------------------------------------------------------------------------
+humann2 -- The HMP Unified Metabolic Analysis Network 2
+	Fedora x86_64
+		/usr/local/humann2
+	Notes:
+		Add the following to environment:
+		export PYTHONPATH='/usr/local/humann2/lib/python2.7/site-packages:PYTHONPATH'
+----------------------------------------------------------------------------------------------------
+hyda   -- Hybrid De Novo Assembler
+        Fedora x86_64
+                /usr/local/hyda
+
+----------------------------------------------------------------------------------------------------
+hyperopt -- Distributed Asynchronous Hyperparameter Optimization
+	Fedora x86_64
+		/usr/local/hyperopt
+	Notes:
+		Add the following to environment:
+		export PYTHONPATH='PYTHONPATH:/usr/local/hyperopt/lib/python2.7/site-packages/'
+----------------------------------------------------------------------------------------------------
+idba -- De Bruijn Graph De Novo Assembler
+	Fedora x86_64
+		/usr/local/idba
+----------------------------------------------------------------------------------------------------
+idea -- IntelliJ IDEA
+	Fedora x86_64
+		/usr/local/idea
+----------------------------------------------------------------------------------------------------
+intel -- Intel compiler suite (icc, etc)
+	Fedora x86_64
+		/s/parsons/l/sys/intel_2018
+----------------------------------------------------------------------------------------------------
+intervaltree -- A mutable, self-balancing interval tree for Python 2 and 3
+	FEdora x86_64
+		/usr/local/intervaltree
+	Notes:
+		Add the following to the environment:
+		export PYTHONPATH='PYTHONPATH:/usr/local/intervaltree/lib/python2.7/site-packages/'
+----------------------------------------------------------------------------------------------------
+iozone -- I/O benchmarking
+	Fedora x86_64
+		/usr/local/iozone
+----------------------------------------------------------------------------------------------------
+ipython -- interactive python interpreter
+	Fedora x86_64
+		/usr/local/ipython
+	Notes:
+                Add the following to environment:
+		export PYTHONPATH={PYTHONPATH}:/usr/local/ipython/lib/python
+
+
+
+----------------------------------------------------------------------------------------------------
+JabRef -- graphical BibTeX front-end
+	Fedora x86_64
+		/usr/local/JabRef
+----------------------------------------------------------------------------------------------------
+java -- Oracle Java
+	Fedora i386
+	RedHat
+		/usr/local/java
+	Fedora x86_64
+		/usr/local/java64
+----------------------------------------------------------------------------------------------------
+jellyfish - Fast, Parallel k-mer Counting for DNA
+	    Fedora x86_64
+		/usr/local/jellyfish
+
+JFLAP -- formal language experimentation
+	Fedora x86_64
+		/usr/local/JFLAP
+----------------------------------------------------------------------------------------------------
+kraken -- Kraken is a system for assigning taxonomic labels to short DNA sequences, 
+	  Fedora x86_64
+		/usr/local/kraken
+----------------------------------------------------------------------------------------------------
+kmergenie -- KmerGenie estimates the best k-mer length for genome de novo assembly.
+	     Fedora x86_64
+		    /usr/local/kmergenie	
+----------------------------------------------------------------------------------------------------
+lapack -- linear algebra library
+	Fedora x86_64
+		/usr/local/lapack
+----------------------------------------------------------------------------------------------------
+LC3 -- little computer, assembly language interpreter
+	Fedora x86_64
+		/usr/local/LC3
+	Notes:
+		Insert the following aliases in your .cshrc or .bashrc file:
+		alias simulator '/usr/local/java/bin/java -classpath /usr/local/LC3/lc3.jar simulator.Main'
+		alias assembler '/usr/local/java/bin/java -classpath /usr/local/LC3/lc3.jar assembler.Assembler'
+		alias convert '/usr/local/java/bin/java -classpath /usr/local/LC3/lc3.jar assembler.ASCIIToBin'
+		alias archsim '/usr/local/java/bin/java -classpath /usr/local/LC3/lc3arch.jar LC3ArchitecturalSimulatorGUI'
+----------------------------------------------------------------------------------------------------
+libmpq -- library for manipulating MPQ archives
+	Fedora x86_64
+		/usr/local/libmpq
+----------------------------------------------------------------------------------------------------
+mahotas -- Python Computer Vision Library
+		Fedora x86_64
+			/usr/local/mahotas
+        Notes:
+                Add the following to environment:
+		export PYTHONPATH=PYTHONPATH:/usr/local/mahotas/lib64/python2.7/site-packages
+----------------------------------------------------------------------------------------------------
+matplotlib -- python plotting library
+	Fedora x86_64
+		/usr/local/matplotlib
+	Notes:
+		Add the following to environment:
+		export PYTHONPATH=/usr/local/matplotlib/lib64/python2.7/site-packages:{PYTHONPATH}
+----------------------------------------------------------------------------------------------------
+matlab -- computational mathematics and programming language
+	Fedora x86_64
+		/s/parsons/l/sys/matlab/bin
+----------------------------------------------------------------------------------------------------
+maven -- software project management
+	Fedora x86_64
+		/usr/local/maven
+----------------------------------------------------------------------------------------------------
+mercurial -- revision control system
+	Fedora x86_64
+		/usr/local/mercurial
+----------------------------------------------------------------------------------------------------
+metaphlan -- Metagenomic Phylogenetic Analysis
+	Fedora x86_64
+		/usr/local/metaphlan2
+----------------------------------------------------------------------------------------------------
+mlabwrap -- Library to execute matlab functions in python
+	Fedora x86_64
+		/usr/local/mlabwrap
+        Notes:
+                Add the following to environment:
+                export PYTHONPATH=/usr/local/mlabwrap/lib64/python2.7/site-packages:{PYTHONPATH}
+		export PATH=/s/parsons/l/sys/matlab64/bin:{PATH}
+----------------------------------------------------------------------------------------------------
+mmh3 -- Python wrapper for MurmurHash (MurmurHash3), a set of fast and robust hash functions.
+	Fedora x86_64
+		/usr/local/mmh3
+
+	Note:
+		You need to export the python path:
+		export PYTHONPATH='PYTHONPATH:/usr/local/mmh3/lib64/python2.7/site-packages/'
+----------------------------------------------------------------------------------------------------
+mpd -- Music Player Daemon
+	Fedora x86_64
+		/usr/local/mpd
+----------------------------------------------------------------------------------------------------
+mpdist -- PostScript printing tools
+	Fedora x86_64
+		/usr/local/mpdist
+----------------------------------------------------------------------------------------------------
+mpfr -- multiple-precision math library
+	RedHat
+		/usr/local/mpfr
+----------------------------------------------------------------------------------------------------
+mplayer -- multimedia player
+	Fedora x86_64
+		/usr/local/mplayer
+
+        Notes:
+                Add the following to environment:
+		export LD_LIBRARY_PATH='LD_LIBRARY_PATH:/usr/local/mplayer/lib'
+----------------------------------------------------------------------------------------------------
+mrjob 	-- package that helps you write and run Hadoop Streaming jobs.
+	Fedora x86_64
+		/usr/local/mrjob
+	Notes:
+		Add the following to environment:
+		export PYTHONPATH=/usr/local/mrjob/lib/python2.7/site-packages:{PYTHONPATH}
+----------------------------------------------------------------------------------------------------
+multichain -- software to build and deploy blockchain applications
+	Fedora x86_64
+                /usr/local/multichain
+        Notes:
+                Add the following to environment:
+                export PATH=PATH:/usr/local/multichain
+----------------------------------------------------------------------------------------------------
+netbeans -- integrated development environment
+	Fedora x86_64
+		/usr/local/netbeans
+----------------------------------------------------------------------------------------------------
+networkx -- python graph analysis tool
+        Fedora x86_64
+                /usr/local/networkx
+        Notes:
+                Add the following to environment:
+                export PYTHONPATH=/usr/local/networkx/lib/python2.7/site-packages:{PYTHONPATH}
+----------------------------------------------------------------------------------------------------
+newbler -- Sofware package designed specifically for assembling DNA sequence data 
+	Fedora x86_64
+		/usr/local/newbler
+----------------------------------------------------------------------------------------------------
+ns -- network simulator
+	Fedora x86_64
+		/usr/local/ns
+----------------------------------------------------------------------------------------------------
+numpy -- python numerical library
+	Fedora x86_64
+		/usr/local/numpy
+----------------------------------------------------------------------------------------------------
+numpy-mkl -- python numerical library linked against Intel Math Kernel Library
+	Fedora x86_64
+		/usr/local/numpy-mkl
+----------------------------------------------------------------------------------------------------
+ocaml -- programming language
+	RedHat
+		/usr/local/ocaml
+----------------------------------------------------------------------------------------------------
+openarena -- is a community-produced deathmatch FPS like Quake 3
+	Fedora x86_64
+		/usr/local/openarena
+----------------------------------------------------------------------------------------------------
+OpenCV -- computer vision library
+	Fedora x86_64
+		/usr/local/OpenCV
+	Note :
+		The following environment variables need to be exported:
+		export PYTHONPATH='PYTHONPATH:/usr/local/OpenCV/lib/python2.7/site-packages'
+----------------------------------------------------------------------------------------------------
+ODE -- ODE is an open source, high performance library for simulating rigid body dynamics.
+	Fedora x86_64
+		/usr/local/ODE
+	Notes:
+		The following environmental variables need to be exported:
+		export LD_LIBRARY_PATH=/usr/local/ODE/lib:{LD_LIBRARY_PATH}
+----------------------------------------------------------------------------------------------------
+opera -- opera_v1.2 is a software designed for Reconstructing Optimal Genomic 
+	 Scaffolds with High-Throughput Paired-End Sequences
+	Fedora x86_64
+		/usr/local/opera
+----------------------------------------------------------------------------------------------------
+panda3d -- a framework for 3D rendering and game development for Python and C++ programs.
+	Fedora x86_64
+		/usr/local/panda3d
+	Note:
+		The following environmental variables need to be exported:
+		export LD_LIBRARY_PATH='LD_LIBRARY_PATH:/usr/local/panda3d/lib64/panda3d'	
+----------------------------------------------------------------------------------------------------
+passenger -- apache ruby module
+	Fedora x86_64
+		/usr/local/passenger
+----------------------------------------------------------------------------------------------------
+perl -- practical report and extraction language
+	Fedora x86_64
+		/usr/local/perl
+----------------------------------------------------------------------------------------------------
+PDT -- Program Database Toolkit (PDT) is a framework for analyzing source code written in several programming languages.
+	Fedora x86_64
+		/usr/local/PDT
+----------------------------------------------------------------------------------------------------
+pluto -- automatic source-to-source transformer that can optimize nested loop sequences for coarse-grained parallelism
+	and cache locality simultaneously
+	Fedora x86_64
+		/usr/local/pluto
+----------------------------------------------------------------------------------------------------
+povray -- raytracer
+	Fedora x86_64
+		/usr/local/povray
+----------------------------------------------------------------------------------------------------
+propy -- A package to compute protein descriptors using python.
+	Fedora x86_64
+		/usr/local/propy
+----------------------------------------------------------------------------------------------------
+pybedtools -- Python wrapper -- and more -- for Aaron Quinlan's BEDTools
+		Fedora x86_64
+			/usr/local/pybedtools
+		Notes:
+			Add the following to the environment:
+			export PYTHONPATH='PYTHONPATH:/usr/local/pybedtools/lib64/python2.7/site-packages/'
+----------------------------------------------------------------------------------------------------
+PyCharm Community -- A Python IDE
+	Fedora x86_64
+                /usr/local/pycharm
+
+----------------------------------------------------------------------------------------------------
+PyCharm Professional -- A Python IDE
+	Fedora x86_64
+                /usr/local/pycharm-pro
+	Notes:
+	     This edition of PyCharm requires a licence
+----------------------------------------------------------------------------------------------------		
+pydoop -- Python interface to Hadoop
+          Fedora x86_64
+		/usr/local/pydoop
+        Notes:
+              export PYTHONPATH='PYTHONPATH:/usr/local/pydoop/lib/python2.7/site-packages/'
+----------------------------------------------------------------------------------------------------
+PyML -- python machine learning library
+	Fedora x86_64
+		/usr/local/PyML
+	Notes:
+		Add the following to .bashrc
+			export PYTHONPATH=/usr/local/PyML/lib64/python2.7/site-packages/
+		or in .cshrc
+			setenv PYTHONPATH /usr/local/PyML/lib64/python2.7/site-packages/
+----------------------------------------------------------------------------------------------------
+pypar -- openmpi python bindings
+	Fedora x86_64
+		/usr/local/pypar
+	Notes:
+		Add the following to .bashrc
+			export PYTHONPATH=/usr/local/pypar/lib64/python2.7/site-packages/:{PYTHONPATH}
+		or in .cshrc
+			setenv PYTHONPATH /usr/local/pypar/lib64/python2.7/site-packages/:{PYTHONPATH}
+----------------------------------------------------------------------------------------------------
+Pyrex -- a Language for Writing Python Extension Modules
+	Fedora x86_64
+		/usr/local/Pyrex
+	Notes:
+		Add the following to .bashrc to help python to locate the Pyrex modules:
+		export PYTHONPATH=/usr/local/Pyrex/lib/python2.7/site-packages/:{PYTHONPATH}
+----------------------------------------------------------------------------------------------------
+pysam -- a python module for reading, manipulating and writing genomic data sets.
+	Fedora x86_64
+		/usr/local/pysam
+	Notes :
+		Add the following to .bashrc to help python to locate the module:
+		export PYTHONPATH='PYTHONPATH:/usr/local/pysam/lib64/python2.7/site-packages/'
+
+----------------------------------------------------------------------------------------------------
+PyQt -- python Qt bindings
+	Fedora x86_64
+		/usr/local/PyQt
+----------------------------------------------------------------------------------------------------
+python -- programming language
+	Fedora x86_64
+		/usr/local/python
+----------------------------------------------------------------------------------------------------
+PyODE -- Python bindings for The Open Dynamics Engine, an open-source physics engine.
+	Fedora x86_64
+		/usr/local/PyODE
+	Notes:
+		Add the following to .bashrc to help python to locate the PyODE modules:
+		export PYTHONPATH=/usr/local/Pyrex/lib/python2.7/site-packages:/usr/local/PyODE/lib64/python2.7/site-packages/:${PYTHONPATH}
+		export LD_LIBRARY_PATH=/usr/local/ODE/lib/:/usr/local/PyODE/lib64/:${LD_LIBRARY_PATH}
+----------------------------------------------------------------------------------------------------
+QIIME -- Package for comparison and analysis of microbial communities
+	Fedora x86_64
+		/usr/local/qiime
+
+----------------------------------------------------------------------------------------------------
+Quast  -- QUAST stands for QUality ASsesment Tool. QUAST evaluates genome assemblies by computing various metrics.
+	Fedora x86_64
+		/usr/local/quast
+----------------------------------------------------------------------------------------------------
+qt -- graphics library
+	RedHat
+		/usr/local/qt
+----------------------------------------------------------------------------------------------------
+R -- programming language
+	Fedora x86_64
+		/usr/local/R
+	RedHat
+		/usr/local/R
+----------------------------------------------------------------------------------------------------
+Ray --	Ray is a parallel de novo genome assembler that utilises the message-passing interface everywhere and is implemented using peer-to-peer communication.
+	Fedora X86_64
+		/usr/local/Ray
+----------------------------------------------------------------------------------------------------
+racket -- scheme programming language
+	Fedora x86_64
+		/usr/local/racket
+----------------------------------------------------------------------------------------------------
+RealPlayer -- multimedia player
+	Fedora x86_64
+		/usr/local/RealPlayer
+----------------------------------------------------------------------------------------------------
+Rar -- WinRAR is a powerful archive manage
+	Fedora x86_64
+		/usr/local/rar
+----------------------------------------------------------------------------------------------------
+Readability -- A collection of functions that measure the readability of a given body of text
+	       using surface characteristics.
+	Fedora x86_64
+		/usr/local/readability
+	Notes:
+		Add the following to .bashrc
+			export PYTHONPATH=/usr/local/readability/lib/python2.7/site-packages:{PYTHONPATH}
+----------------------------------------------------------------------------------------------------
+Readability-lxml -- A fast html to text parser.
+        Fedora x86_64
+                /usr/local/readability-lxml
+        Notes:
+                Add the following to .bashrc
+                        export PYTHONPATH=/usr/local/readability-lxml/lib/python2.7/site-packages:{PYTHONPATH}
+----------------------------------------------------------------------------------------------------
+REAPR -- Recognising Errors in Assemblies using Paired Reads
+	(A tool that evaluates the accuracy of a genome assembly using
+	mapped paired end reads.) 
+	Fedora x86_64
+		/usr/local/Reapr
+
+----------------------------------------------------------------------------------------------------
+RoboCup Soccer Simulator -- The RoboCup Soccer Simulator is a research and educational tool for multi-agent 
+			systems and artificial intelligence. It enables for two teams of 11 simulated 
+			autonomous robotic players to play soccer (football).
+		Fedora x86_64
+			/usr/local/robocupsimulator
+----------------------------------------------------------------------------------------------------
+reportlab: Solution to generate rich, attractive and fully bespoke PDF with Python
+	
+	Notes:	Add the following to .bashrc	
+         export PYTHONPATH=/usr/local/reportlab-2016-10-17/lib64/python3.5/site-packages/
+----------------------------------------------------------------------------------------------------
+Rstudio -- IDE for R programming language
+        Fedora x86_64
+                /usr/local/rstudio
+----------------------------------------------------------------------------------------------------
+SageMath -- SageMath is a computer algebra system with features covering many aspects of mathematics, including algebra, combinatorics, graph theory, numerical analysis, number theory, calculus and statistics.
+	Fedora x86_64
+		/usr/local/sage
+----------------------------------------------------------------------------------------------------
+scikit-learn -- machine learning library for python
+	Fedora x86_64
+		/usr/local/scikit-learn
+	Notes:
+		Add the following to .bashrc
+			export PYTHONPATH=/usr/local/scikit-learn/lib64/python2.7/site-packages:{PYTHONPATH}
+		or in .cshrc
+			setenv  PYTHONPATH /usr/local/scikit-learn/lib64/python2.7/site-packages:{PYTHONPATH}
+----------------------------------------------------------------------------------------------------
+scala : Scala is a programming language for general software applications.
+	Fedora x86_64
+		/usr/local/scala
+	Notess :
+		Add the following to .bashrc
+			export SCALA_HOME=/usr/local/scala
+			export PATH=SCALA_HOME/bin:/PATH
+----------------------------------------------------------------------------------------------------
+scenebuilder : A visual layout tool that lets users quickly design JavaFX application user interfaces
+        Fedora x86_64
+                /usr/local/scenebuilder
+----------------------------------------------------------------------------------------------------
+SciPy -- Python-based ecosystem of open-source software for mathematics, science, and engineering.
+	Fedora x86_64
+		/usr/local/scipy
+----------------------------------------------------------------------------------------------------
+sml -- Standard ML programming language
+	Fedora x86_64
+		/usr/local/sml
+----------------------------------------------------------------------------------------------------
+SPAdes -- St. Petersburg genome assembler 
+	Fedora x86_64
+		/usr/local/SPAdes
+----------------------------------------------------------------------------------------------------
+Spark : Apache Spark is a fast and general engine for big data processing, 
+	with built-in modules for streaming, SQL, machine learning and graph processing.
+        Fedora x86_64
+                /usr/local/spark
+----------------------------------------------------------------------------------------------------
+spark-sklearn : Integration tools for running scikit-learn on Spark
+	Fedora x86_64
+		/usr/local/spark-sklearn
+	Note : You need to export the following python path:
+		export PYTHONPATH='PYTHONPATH:/usr/local/spark-sklearn-0.2.0/lib/python2.7/site-packages/'
+----------------------------------------------------------------------------------------------------
+sphinx_rtd_theme : Read the Docs Sphinx Theme
+	Fedora x86_64
+		/usr/local/sphinx_rtd_theme
+----------------------------------------------------------------------------------------------------
+spim -- MIPS simulator
+	Fedora x86_64
+		/usr/local/spim
+
+----------------------------------------------------------------------------------------------------
+SOAPdenovo2 -- SOAPdenovo, a short read de novo assembly tool, 
+		is a package for assembling short oligonucleotide into contigs and scaffolds. 
+	Fedora X86_64
+		/usr/local/SOAPdenovo2
+----------------------------------------------------------------------------------------------------
+
+
+
+
+sratoolkit -- The Sequence Read Archive (SRA) stores raw sequence data from 'next-generation' sequencing technologies.
+		SRA is NIH’s primary archive of high-throughput sequencing data.
+	Fedora x86_64
+		/usr/local/sratoolkit
+----------------------------------------------------------------------------------------------------
+systemc -- C++ simulation library
+	Fedora x86_64
+		/usr/local/systemc
+----------------------------------------------------------------------------------------------------
+TAU -- Portable profiling and tracing toolkit for performance analysis of parallel programs written in Fortran, C, C++, UPC, Java, Python.
+	Fedora x86_64
+		/usr/local/TAU
+----------------------------------------------------------------------------------------------------
+theona -- A CPU and GPU Math Expression Compiler
+        Fedora x86_64
+                /usr/local/theona
+        Notes:
+                Add the following to .bashrc
+                        export PYTHONPATH=/usr/local/theano-0.7.0/lib/python2.7/site-packages/:{PYTHONPATH}
+----------------------------------------------------------------------------------------------------
+thrust --  C++ template library for CUDA. Thrust is a parallel algorithms library which resembles the C++ Standard Template Library (STL)
+	Fedora x86_64
+		/usr/local/thrust
+----------------------------------------------------------------------------------------------------
+tig -- An ncurses-based text-mode interface for git
+	/usr/local/tig
+----------------------------------------------------------------------------------------------------
+tophat -- A fast splice junction mapper for RNA-Seq reads
+	Fedora x86_64
+		/usr/local/tophat
+----------------------------------------------------------------------------------------------------
+transabyss -- De novo assembly of RNA-Seq data using ABySS
+	Fedora x86_64
+		/usr/local/transabyss
+----------------------------------------------------------------------------------------------------
+torch -- Torch is a scientific computing framework with wide support for machine learning algorithms. It uses LuaJIT, and an underlying C/CUDA implementation.
+	Fedora x86_64
+		/usr/local/torch/
+	Notes:
+                Add the following to .bashrc
+                        export PATH=/usr/local/torch/install/bin:PATH
+----------------------------------------------------------------------------------------------------
+totalview -- TotalView is a GUI-based source code defect analysis tool.
+	Fedora x86_64
+		/usr/local/totalview
+		(/usr/local/toolworks/totalview*)
+----------------------------------------------------------------------------------------------------
+twin -- Efficient Indexed Alignment of Contigs to Optical Maps.
+	Fedora x86_64
+		/usr/local/twin
+----------------------------------------------------------------------------------------------------
+umbrello -- UML modeler 
+	Fedora x86_64
+		/usr/local/umbrello
+----------------------------------------------------------------------------------------------------
+unison -- File Synchronizer
+	Fedora x86_64
+       	        /usr/local/bin/unison
+----------------------------------------------------------------------------------------------------
+USE	-- USE is a system for the specification of information systems based on 	the Unified Modeling Language (UML)
+	Fedora x86_64
+		/usr/local/use
+----------------------------------------------------------------------------------------------------
+velvet -- Sequence Assembler for Very Short Reads.
+	Fedora x86_64
+		/usr/local/velvet
+
+----------------------------------------------------------------------------------------------------
+virtualenv --A tool for creating isolated 'virtual' python environments.
+            Note: Add the following to .bashrc
+            export PYTHONPATH=/usr/local/virtualenv-2017-02-13/lib/python2.7/site-packages/:PYTHONPATH
+----------------------------------------------------------------------------------------------------
+visual studio code -- An IDE from Microsoft
+	Fedora x86_64
+		/usr/local/visual-studio-code/	
+----------------------------------------------------------------------------------------------------
+vtune -- Intel Performance Profiler
+        Fedora x86_64
+                /usr/local/vtune
+----------------------------------------------------------------------------------------------------
+whizzytex -- emacs TeX plugin
+	Fedora x86_64
+		/usr/local/whizzytex
+----------------------------------------------------------------------------------------------------
+weka -- Collection of machine learning algorithms for data mining tasks.
+	Fedora x86_64
+		/usr/local/weka
+----------------------------------------------------------------------------------------------------
+xforms -- xforms tools
+	Fedora x86_64
+		/usr/local/xforms
+----------------------------------------------------------------------------------------------------
+xgboost -- An optimized distributed gradient boosting library
+	Fedora x86_64
+		/usr/local/xgboost
+	Python library :
+		/usr/local/xgboost_fc27
+	Note : Add the following to .bashrc
+                        export PYTHONPATH=/usr/local/xgboost_fc27/lib/python2.7/site-packages/:{PYTHONPATH}
+
+----------------------------------------------------------------------------------------------------
+xgobi -- data visualization
+	Fedora x86_64
+		/usr/local/xgobi
+----------------------------------------------------------------------------------------------------
+xilinx -- FPGA tools
+	Fedora x86_64
+		/usr/local/xilinx
+----------------------------------------------------------------------------------------------------
+xine -- multimedia player
+	Fedora x86_64
+		/usr/local/xine
+----------------------------------------------------------------------------------------------------
+xmms -- multimedia player
+	Fedora x86_64
+		/usr/local/xmms
+----------------------------------------------------------------------------------------------------
+xmpi -- run/debug GUI for mpi
+	Fedora x86_64
+		/usr/local/xmpi
+----------------------------------------------------------------------------------------------------
+yalmip -- a toolbox for modeling and optimization in MATLAB
+	Fedora x86_64
+		/usr/local/yalmip
+	Notes: Add the following directories to your MATLAB path
+		/usr/local/yalmip
+		/usr/local/yalmip/extras
+		/usr/local/yalmip/demos
+		/usr/local/yalmip/solvers
+		/usr/local/yalmip/modules
+		/usr/local/yalmip/modules/parametric
+		/usr/local/yalmip/modules/moment
+		/usr/local/yalmip/modules/global
+		/usr/local/yalmip/modules/sos
+		/usr/local/yalmip/operators
+----------------------------------------------------------------------------------------------------	
+yed  -- yED Graphical Editor
+        Fedora X86_64
+                /usr/local/yed
+----------------------------------------------------------------------------------------------------
+z-eves -- theorem proving tool
+	Fedora x86_64
+		/usr/local/z-eves
+
+
+
+"
+fi
+fi
+fi
